@@ -1,0 +1,77 @@
+<div class="main-content row">
+    <div class="block col-md-6 order-md-0 order-1">
+        <div class="title">
+            Sign up to Website
+        </div>
+        <div class="disc">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam praesentium animi similique nemo iure repudiandae, amet incidunt! 
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off" class="form">
+            <div class="field">
+                <mat-form-field class="full-width">
+                    <mat-label>
+                        Enter the Name
+                    </mat-label>
+                    <input matInput formControlName="firstName" type="text"
+                        placeholder="Ex:- John" formControlName="userName">
+                    <mat-error *ngIf="registerForm.controls['userName'].invalid">
+                        *Name is <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field class="full-width">
+                    <mat-label>
+                        Enter the Mail ID
+                    </mat-label>
+                    <input matInput placeholder="Ex:- admin@gmail.com" type="text"
+                         formControlName="email" email>
+                    <mat-error *ngIf="registerForm.controls['email'].invalid ">
+                        *Email is <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field pass">
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Set the Password </mat-label>
+                    <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" 
+                    placeholder="password should be atleast 8 characters" formControlName="password">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="registerForm.controls['password'].invalid ">
+                        *password is <strong>Required</strong>
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="field">
+
+                <mat-form-field class="full-width">
+                    <mat-label>
+                        Confirm the Password 
+                    </mat-label>
+                    <input (keyup)="matchPass()" #confirm  matInput placeholder="Re-Enter the password" type="text">
+                </mat-form-field>
+                <span class="red" *ngIf="noMatch">
+                    *password is <strong>Not Matched</strong>
+                </span>
+            </div>
+            <div class="field">
+                <mat-checkbox class="example-margin" formControlName="terms">Email me with news and updates</mat-checkbox>
+            </div>
+            <div class="field reg">
+                <button class="register">Register</button>
+                <div>
+                    OR
+                </div>
+                <div class="acc">
+                    Have an account? <a routerLink="">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="block2 col-md-6 order-md-1 order-0 ">
+        <img src="../../../assets/signUp.png" alt="">
+    </div>
+</div>

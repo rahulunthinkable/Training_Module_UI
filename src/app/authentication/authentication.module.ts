@@ -36,11 +36,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Login } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
+import { SignUPComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     Login,
     ForgotPasswordComponent,
+    SignUPComponent,
   ],
   imports: [
     CommonModule,
