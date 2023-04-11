@@ -33,6 +33,5 @@ export class Login {
 
   login(){
     const value = this.formGroup.value;
-    console.log('value >>>>>>>>>', value);
   }
 }
