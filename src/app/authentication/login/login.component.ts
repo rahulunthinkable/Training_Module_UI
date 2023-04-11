@@ -12,17 +12,27 @@ export class Login {
     email: new FormControl('', [Validators.required, Validators.email]),
     password : new FormControl('', [Validators.required]),
   });
-  hide = true;
 
+  hide = true;
 
   getErrorMessage() {
     const emailControl:any = this.formGroup.get('email');
     const passwordControl:any = this.formGroup.get('password');
-
-    if (emailControl.hasError('required')) {
+  
+    if (emailControl.hasError('required') || passwordControl.hasError('required')) {
       return 'You must enter a value';
     }
+  
+    if (emailControl.hasError('email')) {
+      return 'Not a valid email';
+    }
     
-    return passwordControl.hasError('email') ? 'Not a valid email' : '';
+    return '';
+  }
+  
+
+  login(){
+    const value = this.formGroup.value;
+    console.log('value >>>>>>>>>', value);
   }
 }

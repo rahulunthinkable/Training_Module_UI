@@ -6,7 +6,7 @@
           <h1>Login For Learning new Technologies</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita eius totam illum incidunt maxim porro vel amet ipsam!</p>
         </div>
-
+        <form [formGroup]="formGroup">
         <div class="input-element">
           <mat-form-field class="w-100">
             <input matInput placeholder="pat@example.com" formControlName="email" required>
@@ -17,19 +17,25 @@
         <div class="input-element">
           <mat-form-field class="w-100">
             <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" formControlName="password">
+            <mat-error *ngIf="formGroup.get('password')">{{getErrorMessage()}}</mat-error>
           </mat-form-field> 
         </div>
-  
+        </form>
       <div class="checkbox">
         <mat-checkbox>Remember Me</mat-checkbox>
         <a href="session/forget-password" class="a-color">Forget Password</a>
       </div>
-      <button mat-raised-button>Login</button>
+      <button mat-raised-button (click)="login()">Login</button>
+      <div class="user-link">
+        <div>OR</div>
+        Create an new account?
+        <span>
+          <a class="a-color">SignIn</a>
+        </span>
+      </div>
       </div>
       <div class="col-md-6 col-sm-12">
-        <img src="assets/SignUp.png" height="400" width="500">
+        <img src="assets/Images/SignUp.png" height="400" width="500">
       </div>
     </div>
   </div>
-
-
