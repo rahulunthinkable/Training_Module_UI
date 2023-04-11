@@ -3,17 +3,11 @@
         <div class="title">
             Sign up to Website
         </div>
-        <div class="disc">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam praesentium animi similique nemo iure repudiandae, amet incidunt! 
-        </div>
         <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off" class="form">
             <div class="field">
                 <mat-form-field class="full-width">
-                    <mat-label>
-                        Enter the Name
-                    </mat-label>
                     <input matInput formControlName="firstName" type="text"
-                        placeholder="Ex:- John" formControlName="userName">
+                        placeholder="Enter your name" formControlName="userName" >
                     <mat-error *ngIf="registerForm.controls['userName'].invalid">
                         *Name is <strong>Required</strong>
                     </mat-error>
@@ -21,10 +15,7 @@
             </div>
             <div class="field">
                 <mat-form-field class="full-width">
-                    <mat-label>
-                        Enter the Mail ID
-                    </mat-label>
-                    <input matInput placeholder="Ex:- admin@gmail.com" type="text"
+                    <input matInput placeholder="Enter your email" type="text"
                          formControlName="email" email>
                     <mat-error *ngIf="registerForm.controls['email'].invalid ">
                         *Email is <strong>Required</strong>
@@ -34,9 +25,8 @@
             <div class="field pass">
 
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Set the Password </mat-label>
                     <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" 
-                    placeholder="password should be atleast 8 characters" formControlName="password">
+                    placeholder="Enter your password" formControlName="password">
                     <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
@@ -48,10 +38,7 @@
             <div class="field">
 
                 <mat-form-field class="full-width">
-                    <mat-label>
-                        Confirm the Password 
-                    </mat-label>
-                    <input (keyup)="matchPass()" #confirm  matInput placeholder="Re-Enter the password" type="text">
+                    <input (keyup)="matchPass()" #confirm  matInput placeholder=" Confirm your password" type="text">
                 </mat-form-field>
                 <span class="red" *ngIf="noMatch">
                     *password is <strong>Not Matched</strong>
@@ -66,7 +53,7 @@
                     OR
                 </div>
                 <div class="acc">
-                    Have an account? <a routerLink="">Login</a>
+                    Have an account? <a routerLink="/session">Login</a>
                 </div>
             </div>
         </form>
