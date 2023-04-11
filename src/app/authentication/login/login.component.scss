@@ -22,6 +22,15 @@
         display: flex;
         justify-content: space-between;
       }
+
+      .user-link{
+        text-align: center;
+        margin-top: 13px;
+
+        a{
+          cursor: pointer;
+        }
+      }
     }
   }
 }
