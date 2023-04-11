@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GenrichttpService } from './genericHttpService.service';
+import { GenericHttpService } from './generic-http.service';
 
-describe('GenrichttpService', () => {
-  let service: GenrichttpService;
+describe('GenericHttpService', () => {
+  let service: GenericHttpService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GenrichttpService);
+    service = TestBed.inject(GenericHttpService);
   });
 
   it('should be created', () => {
