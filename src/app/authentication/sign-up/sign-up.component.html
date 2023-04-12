@@ -1,0 +1,64 @@
+<div class="main-content row">
+    <div class="block col-md-6 order-md-0 order-1">
+        <div class="title">
+            Sign up to Website
+        </div>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off" class="form">
+            <div class="field">
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="firstName" type="text"
+                        placeholder="Enter your name" formControlName="userName" >
+                    <mat-error *ngIf="registerForm.controls['userName'].invalid">
+                        *Name is <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Enter your email" type="text"
+                         formControlName="email" email>
+                    <mat-error *ngIf="registerForm.controls['email'].invalid ">
+                        *Email is <strong>Required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field pass">
+
+                <mat-form-field class="full-width" appearance="fill">
+                    <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" 
+                    placeholder="Enter your password" formControlName="password">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="registerForm.controls['password'].invalid ">
+                        *password is <strong>Required</strong>
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="field">
+
+                <mat-form-field class="full-width">
+                    <input (keyup)="matchPass()" #confirm  matInput placeholder=" Confirm your password" type="text">
+                </mat-form-field>
+                <span class="red" *ngIf="noMatch">
+                    *password is <strong>Not Matched</strong>
+                </span>
+            </div>
+            <div class="field">
+                <mat-checkbox class="example-margin" formControlName="terms">Email me with news and updates</mat-checkbox>
+            </div>
+            <div class="field reg">
+                <button class="register">Register</button>
+                <div>
+                    OR
+                </div>
+                <div class="acc">
+                    Have an account? <a routerLink="/session">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="block2 col-md-6 order-md-1 order-0 ">
+        <img src="../../../assets/Images/signIn.png" alt="">
+    </div>
+</div>
