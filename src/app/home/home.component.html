@@ -4,28 +4,32 @@
       menu area
       <h3>Dashboard</h3>
     </mat-drawer>
-    <div class="main-content-area">
-      <div class="main-toolbar mat-elevation-z8">
-        <mat-toolbar color="primary">
-          <button mat-icon-button (click)="drawer.toggle()">
-            <mat-icon>menu</mat-icon>
-          </button>
-          <span>My App</span>
-          <span class="example-spacer"></span>
-          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>share</mat-icon>
-          </button>
-        </mat-toolbar>
-      </div>
+    <mat-drawer-content>
+      <div class="main-content-area">
+        <div class="main-toolbar mat-elevation-z8">
+          <mat-toolbar color="primary">
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+            <span class="logo">My App</span>
+            <div class="notification-icon">
+              <mat-icon>favorite</mat-icon>
+              <mat-drawer #top class="sidenav mat-elevation-z8" mode="side" position="end">
+                <mat-icon (click)="top.close()">clear</mat-icon>
 
-      <div class="outlet-area">
-        <div class="mat-elevation-z8" style="margin: 10px;">
-          <router-outlet></router-outlet>
+                <mat-card class="mat-elevation-z8">
+                  <mat-card-content>Simple card</mat-card-content>
+                </mat-card>
+              </mat-drawer>
+              <mat-icon (click)="top.toggle()">notifications</mat-icon>
+            </div>
+          </mat-toolbar>
+        </div>
+
+        <div class="outlet-area">
+          <div class="mat-elevation-z8">
+            <router-outlet></router-outlet>
+          </div>
         </div>
       </div>
-    </div>
+    </mat-drawer-content>
   </mat-drawer-container>
 </div>

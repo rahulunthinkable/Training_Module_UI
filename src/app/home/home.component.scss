@@ -1,20 +1,44 @@
 .main-card {
 
   .main-container {
+
     .sidenav {
       width: 20%;
       height: 100vh;
+      border: none;
     }
 
-    .main-content-area{
+    .main-content-area {
       height: 100vh;
 
-      .main-toolbar{
-        background-color: blue;
+      .main-toolbar {
         color: #fff;
+
+        .logo {
+          margin-left: 10px;
+        }
+      }
+
+    }
+
+    .notification-icon {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      .mat-icon {
+        margin-left: 10px;
+      }
+
+      .mat-mdc-card {
+        margin: 10px;
       }
     }
 
-  }
+    .outlet-area {
+      margin: 10px;
+    }
 
+  }
 }
