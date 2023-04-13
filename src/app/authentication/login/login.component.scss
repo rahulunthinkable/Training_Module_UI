@@ -6,6 +6,12 @@
 
   .container {
     .row {
+
+      .col-md-6{
+        padding: 30px 50px; 
+        border-radius: 10px;
+      }
+      
       .user-content {
         padding: 20px 0;
   
@@ -30,6 +36,10 @@
         a{
           cursor: pointer;
         }
+      }
+
+      .img-fluid{
+        height: 100%;
       }
     }
   }
