@@ -29,4 +29,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class AdminTableComponent {
   displayedColumns: string[] = ['userId', 'name', 'userType', 'doj','Cources Enrolled'];
   dataSource = ELEMENT_DATA;
+
+  dataToTable() {
+    console.log('....clicked');
+  }
+
+  selectedUser(value: any) {
+    console.log(value);
+  }
+
+  selectedDate(value: any) {
+    console.log(value);
+  }
+
+  selectedSearch(value: any) {
+    console.log(value);
+  }
 }

@@ -1,0 +1,28 @@
+<mat-card class="mat-elevation-z8">
+  <mat-card-actions>
+    <div class="user-type">
+      <mat-form-field appearance="fill">
+        <mat-label>User Type</mat-label>
+        <mat-select name="food">
+          <mat-option (click)="userSelect(user)" *ngFor="let user of userTypes" [value]="user.value">
+            {{user.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="date">
+      <mat-form-field appearance="fill" class="date-field">
+        <mat-label>Choose a date</mat-label>
+        <input #dateInputValue (dateInput)="dateSelect(picker1)" matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1  ngDefaultControl></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="search">
+      <mat-form-field appearance="fill">
+        <input #userSearch (keyup)="userSearching()" matInput placeholder="Enter the user name">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-card-actions>
+</mat-card>
