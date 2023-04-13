@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 export interface PeriodicElement {
-  userId: number;
-  name: string;
-  userType: string;
-  doj: string;
-  couresEnrolled:string;
+  UserId: number;
+  Name: string;
+  Usertype: string;
+  DOJ: string;
+  CourcesEnrolled:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {userId: 1, name: 'Hydrogen', userType: 'Trainer', doj: '11/02/12' , couresEnrolled:'HTML'},
-  {userId: 2, name: 'Helium', userType: 'Student', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 3, name: 'Lithium', userType: 'Trainer', doj: '01/01/10',  couresEnrolled:'HTML'},
-  {userId: 4, name: 'Beryllium', userType: 'Trainer', doj: '11/02/02',  couresEnrolled:'HTML'},
-  {userId: 5, name: 'Boron', userType: 'User', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 6, name: 'Carbon', userType: 'Trainer', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 7, name: 'Nitrogen', userType: 'Trainee', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 8, name: 'Oxygen', userType: 'Trainer', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 9, name: 'Fluorine', userType: 'Trainer', doj: '11/02/12',  couresEnrolled:'HTML'},
-  {userId: 10, name: 'Neon', userType: 'Trainer', doj: '11/02/12', couresEnrolled:'HTML'},
+  {UserId: 1, Name: 'Hydrogen', Usertype: 'Trainer', DOJ: '11/02/12' , CourcesEnrolled:'HTML'},
+  {UserId: 2, Name: 'Helium', Usertype: 'Student', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 3, Name: 'Lithium', Usertype: 'Trainer', DOJ: '01/01/10',  CourcesEnrolled:'HTML'},
+  {UserId: 4, Name: 'Beryllium', Usertype: 'Trainer', DOJ: '11/02/02',  CourcesEnrolled:'HTML'},
+  {UserId: 5, Name: 'Boron', Usertype: 'User', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 6, Name: 'Carbon', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 7, Name: 'Nitrogen', Usertype: 'Trainee', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 8, Name: 'Oxygen', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 9, Name: 'Fluorine', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
+  {UserId: 10, Name: 'Neon', Usertype: 'Trainer', DOJ: '11/02/12', CourcesEnrolled:'HTML'},
 ];
 
 @Component({
@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class AdminTableComponent {
-  displayedColumns: string[] = ['userId', 'name', 'userType', 'doj','Cources Enrolled'];
+  displayedColumns: string[] = ['UserId', 'Name', 'Usertype', 'DOJ','CourcesEnrolled'];
   dataSource = ELEMENT_DATA;
 
   dataToTable() {
