@@ -3,7 +3,7 @@
     <div class="user-type">
       <mat-form-field appearance="fill">
         <mat-label>User Type</mat-label>
-        <mat-select name="food">
+        <mat-select name="user">
           <mat-option (click)="userSelect(user)" *ngFor="let user of userTypes" [value]="user.value">
             {{user.viewValue}}
           </mat-option>

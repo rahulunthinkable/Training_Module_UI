@@ -30,19 +30,12 @@ export class AdminTableComponent {
   displayedColumns: string[] = ['UserId', 'Name', 'Usertype', 'DOJ','CourcesEnrolled'];
   dataSource = ELEMENT_DATA;
 
-  dataToTable() {
-    console.log('....clicked');
-  }
-
   selectedUser(value: any) {
-    console.log(value);
   }
 
   selectedDate(value: any) {
-    console.log(value);
   }
 
   selectedSearch(value: any) {
-    console.log(value);
   }
 }
