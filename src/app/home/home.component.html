@@ -2,11 +2,11 @@
   <mat-drawer-container class="main-container app-bg">
     <mat-drawer #drawer class="sidenav" mode="side" opened>
       <div class="usr-img">
-        <img src="../../assets/Images/user.png" alt="">
+        <img src="../../assets/Images/user.png" alt="" />
       </div>
       
       <div class="dashboard-title">
-        <h2>Dashboard</h2>
+       <app-side-menu></app-side-menu>
       </div>
     </mat-drawer>
     <mat-drawer-content>
@@ -17,7 +17,11 @@
             <span class="logo">My App</span>
             <div class="notification-icon">
               <mat-icon>favorite</mat-icon>
-              <mat-drawer #top class="sidenav mat-elevation-z8" mode="side" position="end">
+              <mat-drawer
+                #top
+                class="sidenav mat-elevation-z8"
+                mode="side"
+                position="end">
                 <mat-icon (click)="top.close()">clear</mat-icon>
 
                 <mat-card class="mat-elevation-z8">
