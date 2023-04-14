@@ -10,8 +10,7 @@
         </mat-select>
       </mat-form-field>
       <span *ngIf="userTypeIcon" (click)="userClick()" class="material-icons">filter_alt</span>
-      <span *ngIf="!userTypeIcon" (click)="userClick()" class="material-icons"
-        style="color: rgb(0, 0, 255);">filter_alt</span>
+      <span *ngIf="!userTypeIcon" (click)="userClick()" class="material-icons text-primary">filter_alt</span>
     </div>
     <div class="date">
       <mat-form-field *ngIf="!dateIcon" appearance="fill" class="date-field">
