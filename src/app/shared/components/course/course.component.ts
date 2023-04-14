@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-course",
-  templateUrl: "./course.component.html",
-  styleUrls: ["./course.component.scss"],
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit {
   courseData: any;
@@ -12,64 +12,64 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
     this.courseData = [
       {
-        heading: "What is Html",
+        heading: 'What is Html',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Css",
+        heading: 'What is Css',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is JavaScript",
+        heading: 'What is JavaScript',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Angular JS",
+        heading: 'What is Angular JS',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Angular",
+        heading: 'What is Angular',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is React Js",
+        heading: 'What is React Js',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Reacti Native",
+        heading: 'What is Reacti Native',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Express Js",
+        heading: 'What is Express Js',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Next Js",
+        heading: 'What is Next Js',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Nest Js",
+        heading: 'What is Nest Js',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is Mongo DB",
+        heading: 'What is Mongo DB',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
       {
-        heading: "What is My SQL",
+        heading: 'What is My SQL',
         paragraph:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!",
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
       },
     ];
   }
