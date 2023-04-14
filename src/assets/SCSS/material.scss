@@ -31,6 +31,8 @@
   background-color: transparent;
   height: 60px;
 }
+.mat-mdc-card-content {
+ padding-top: 20px !important;
 
 .mat-drawer-content {
   margin-right: 0px !important;
@@ -38,4 +40,5 @@
 
 .mat-icon {
   cursor: pointer !important;
+}
 }

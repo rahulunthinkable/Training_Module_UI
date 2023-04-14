@@ -5,6 +5,26 @@
     .sidenav {
       width: 20%;
       height: 100vh;
+      background-color: rgba(255, 255, 255, .3);
+      color: #fff;
+
+      .usr-img {
+        padding: 30px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        img {
+          width: 75%;
+          height: 200px;
+        }
+      }
+
+      .dashboard-title {
+        padding: 20px 10px;
+      }
+
       border: none;
     }
 
@@ -12,33 +32,45 @@
       height: 100vh;
 
       .main-toolbar {
-        color: #fff;
-
-        .logo {
-          margin-left: 10px;
+        mat-toolbar {
+          color: #fff;
         }
       }
 
-    }
-
-    .notification-icon {
-      width: 100%;
-      display: flex;
-      justify-content: end;
-      align-items: center;
-
-      .mat-icon {
-        margin-left: 10px;
-      }
-
-      .mat-mdc-card {
-        margin: 10px;
+      .outlet-area {
+        height: calc(100vh - 70px) !important;
+        overflow: auto;
       }
     }
 
-    .outlet-area {
-      margin: 10px;
-    }
 
   }
+
+  .main-toolbar {
+    color: #fff;
+
+    .logo {
+      margin-left: 10px;
+    }
+  }
+
+}
+
+.notification-icon {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  .mat-icon {
+    margin-left: 10px;
+  }
+
+  .mat-mdc-card {
+    margin: 10px;
+  }
+}
+
+.outlet-area {
+  margin: 10px;
 }

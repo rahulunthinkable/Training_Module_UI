@@ -1,0 +1,11 @@
+<div class="main-content  row w-100">
+  <div class="col-md-4 col-12" *ngFor="let item of data" (click)="coures()">
+    <mat-card class="card-containe">
+      <img mat-card-image src="assets/Images/JS.png" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <h2>{{item.heading}}</h2>
+        <p class="title">{{item.paragraph}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
