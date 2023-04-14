@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminTableComponent } from './admin-table/admin-table.component';
+import { CourseComponent } from '../shared/components/course/course.component';
 
 const routes: Routes = [
   {
     path:'',
-    component:AdminTableComponent,
+    component:CourseComponent,
   }
 ];
 @NgModule({

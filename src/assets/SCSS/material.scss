@@ -31,7 +31,6 @@
   background-color: transparent;
   height: 60px;
 }
-
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
 
   padding: 0px;
@@ -41,6 +40,8 @@
 .mat-mdc-select-value {
   padding-top: 3px;
 }
+.mat-mdc-card-content {
+  padding-top: 20px !important; 
 
 .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
   padding-bottom: 19px;
@@ -49,7 +50,8 @@
     margin-right: 0px !important;
   }
 
-  .mat-icon {
-    cursor: pointer !important;
-  }
+.mat-icon {
+  cursor: pointer !important;
+}
+}
 }
