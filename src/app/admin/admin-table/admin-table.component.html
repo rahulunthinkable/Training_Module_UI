@@ -1,4 +1,10 @@
-<div>
+<app-filter (userTypeName)="selectedUser($event)"
+            (selectedDate)="selectedDate($event)"
+            (userSearchName)="selectedSearch($event)"
+>
+</app-filter>
+
+<div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <div *ngFor="let column of displayedColumns">
       <ng-container [matColumnDef]="column">
