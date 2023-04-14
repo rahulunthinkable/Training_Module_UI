@@ -24,7 +24,7 @@ export class FilterComponent {
     { value: 'none', viewValue: 'None' },
   ];
 
-  obj = [
+  filtersObj = [
     { 'userType': null },
     { 'date': null },
     { 'userName': null },
@@ -32,31 +32,31 @@ export class FilterComponent {
 
   userSelect(user: any) {
     if (user == null) {
-      this.obj[0].userType = null;
-      this.userTypeName.emit(this.obj);
+      this.filtersObj[0].userType = null;
+      this.userTypeName.emit(this.filtersObj);
     } else {
-      this.obj[0].userType = user.value;
-      this.userTypeName.emit(this.obj);
+      this.filtersObj[0].userType = user.value;
+      this.userTypeName.emit(this.filtersObj);
     }
   }
 
   dateSelect(date: any) {
     if (date == null) {
-      this.obj[1].date = null;
-      this.userTypeName.emit(this.obj);
+      this.filtersObj[1].date = null;
+      this.userTypeName.emit(this.filtersObj);
     } else {
-      this.obj[1].date = this.picker.nativeElement.value;
-      this.selectedDate.emit(this.obj);
+      this.filtersObj[1].date = this.picker.nativeElement.value;
+      this.selectedDate.emit(this.filtersObj);
     }
   }
 
   userSearching(query: any) {
     if (query == null) {
-      this.obj[2].userName = null;
-      this.userTypeName.emit(this.obj);
+      this.filtersObj[2].userName = null;
+      this.userTypeName.emit(this.filtersObj);
     } else {
-      this.obj[2].userName = this.userSearch.nativeElement.value;
-      this.userSearchName.emit(this.obj);
+      this.filtersObj[2].userName = this.userSearch.nativeElement.value;
+      this.userSearchName.emit(this.filtersObj);
     }
   }
 

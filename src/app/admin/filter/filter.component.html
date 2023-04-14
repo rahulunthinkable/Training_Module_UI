@@ -23,7 +23,7 @@
       <mat-icon *ngIf="dateIcon" (click)="dateClick()">date_range</mat-icon>
       <mat-icon *ngIf="!dateIcon" (click)="dateClick()">close</mat-icon>
     </div>
-    <div class="search" style="display: flex;align-items: center;">
+    <div class="search">
       <mat-form-field *ngIf="!searchIcon" appearance="fill">
         <input #userSearch (keyup)="userSearching('s')" matInput placeholder="Enter the user name">
         <mat-icon matSuffix>search</mat-icon>
