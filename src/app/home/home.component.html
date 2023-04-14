@@ -1,12 +1,17 @@
 <div class="main-card">
-  <mat-drawer-container class="main-container">
+  <mat-drawer-container class="main-container app-bg">
     <mat-drawer #drawer class="sidenav" mode="side" opened>
-      menu area
-      <h3>Dashboard</h3>
+      <div class="usr-img">
+        <img src="../../assets/Images/user.png" alt="">
+      </div>
+      
+      <div class="dashboard-title">
+        <h2>Dashboard</h2>
+      </div>
     </mat-drawer>
     <div class="main-content-area">
       <div class="main-toolbar mat-elevation-z8">
-        <mat-toolbar color="primary">
+        <mat-toolbar class="app-bg">
           <button mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
           </button>
@@ -20,9 +25,9 @@
           </button>
         </mat-toolbar>
       </div>
-
+      
       <div class="outlet-area">
-        <div class="mat-elevation-z8" style="margin: 10px;">
+        <div class="mat-elevation-z8 " style="margin: 10px;">
           <router-outlet></router-outlet>
         </div>
       </div>
