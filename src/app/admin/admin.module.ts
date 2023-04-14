@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FilterComponent } from './filter/filter.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { UserTableComponent } from './user-table/user-table.component';
     CommonModule,
     AdminRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }
