@@ -31,6 +31,7 @@
   background-color: transparent;
   height: 60px;
 }
+
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
 
   padding: 0px;
@@ -40,18 +41,23 @@
 .mat-mdc-select-value {
   padding-top: 3px;
 }
+
 .mat-mdc-card-content {
-  padding-top: 20px !important; 
+  padding-top: 20px !important;
+
+  .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+    padding-bottom: 19px;
+
+    .mat-drawer-content {
+      margin-right: 0px !important;
+    }
+
+    .mat-icon {
+      cursor: pointer !important;
+    }
+  }
+}
 
 .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
-  padding-bottom: 19px;
-
-  .mat-drawer-content {
-    margin-right: 0px !important;
-  }
-
-.mat-icon {
-  cursor: pointer !important;
-}
-}
+  padding-bottom: 13px;
 }
