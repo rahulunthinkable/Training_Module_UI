@@ -1,9 +1,5 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-
-interface user {
-  value: string;
-  viewValue: string;
-}
+import { user } from '../interfaces/interface';
 
 @Component({
   selector: 'app-filter',

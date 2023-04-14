@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-export interface PeriodicElement {
-  UserId: number;
-  Name: string;
-  Usertype: string;
-  DOJ: string;
-  CourcesEnrolled:string;
-}
+import { PeriodicElement } from '../interfaces/interface';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {UserId: 1, Name: 'Hydrogen', Usertype: 'Trainer', DOJ: '11/02/12' , CourcesEnrolled:'HTML'},
