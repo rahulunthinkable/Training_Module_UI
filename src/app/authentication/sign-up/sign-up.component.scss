@@ -1,0 +1,174 @@
+@mixin mobile {
+  @media (max-width : 850px) {
+    @content;
+  }
+}
+
+@mixin image1 {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+
+@mixin image2 {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin padding {
+  @media (max-width : 650px) {
+    @content;
+  }
+}
+
+
+.main-content {
+  margin: auto;
+  scroll-behavior: smooth;
+  padding-top: 20px;
+  align-items: center;
+  .block {
+    padding: 30px 10px;
+    border-radius: 10px;
+
+
+    .title {
+      font-family: 'Poppins';
+      font-weight: bold;
+      font-size: 1.8rem;
+      line-height: 2.3rem;
+      margin: 15px 0;
+      padding-left: 60px;
+
+      @include mobile {
+        padding-left: 10px;
+      }
+    }
+
+    .disc {
+      padding-left: 60px;
+      line-height: 23px;
+      color: rgba(0, 0, 0, 0.432);
+      font-size: 16px;
+
+      @include mobile {
+        padding-left: 10px;
+      }
+    }
+
+    form {
+      padding: 10px;
+
+      .field {
+        margin: 10px;
+        padding: 0 30px;
+        // line-height: 0;
+
+        @include mobile {
+          padding: 0 10px;
+        }
+
+        label {
+          margin: 8px;
+          font-size: 1rem;
+        }
+
+        .form-control {
+          margin: 5px 0;
+          border: 1px solid rgba(0, 0, 0, 0.493);
+          height: 50px;
+        }
+
+        span {
+          color: red;
+          margin: 5px 0 0 30px;
+        }
+
+        .red {
+          margin-top: 0px;
+        }
+
+        .full-width {
+          width: 100%;
+        }
+      }
+
+      .pass {
+        input {
+          width: 90%;
+
+          @include mobile {
+            width: 83%;
+          }
+
+          display: inline-block;
+          border-radius: 5px 0 0 5px;
+          position: relative;
+        }
+
+        input.form-control {
+          border-right: none;
+        }
+
+        .eye-but {
+          border: 1px solid rgba(0, 0, 0, 0.493);
+          border-radius: 0 5px 5px 0;
+          position: relative;
+          border-left: none;
+          height: 51px;
+          bottom: -6px;
+
+          mat-icon {
+            position: relative;
+          }
+        }
+      }
+
+      .reg {
+        text-align: center;
+
+        .register {
+          padding: 10px 20px;
+          border-radius: 5px;
+          background-color: blue;
+          color: white;
+          font-size: 1.2rem;
+          outline: none;
+          border: none;
+          width: 100%;
+          height: 45px;
+          margin-bottom: 5px;
+
+
+          &:hover {
+            background-color: rgba(0, 0, 255, 0.836);
+            box-shadow: 0 0 3px black;
+          }
+        }
+
+        div {
+          margin: 3px 0;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .block2 {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+
+    img {
+      // width: 90%;
+      height: 100%;
+      padding: 29% 0;
+      @include padding {
+        padding: 5% 0;
+        height: auto;
+      }
+    }
+  }
+}

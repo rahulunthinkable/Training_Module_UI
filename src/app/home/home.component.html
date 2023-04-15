@@ -1,0 +1,40 @@
+<div class="main-card">
+  <mat-drawer-container class="main-container app-bg">
+    <mat-drawer #drawer class="sidenav" mode="side" opened>
+      <div class="usr-img">
+        <img src="../../assets/Images/user.png" alt="">
+      </div>
+      
+      <div class="dashboard-title">
+        <h2>Dashboard</h2>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="main-content-area">
+        <div class="main-toolbar mat-elevation-z8">
+          <mat-toolbar color="primary">
+            <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+            <span class="logo">My App</span>
+            <div class="notification-icon">
+              <mat-icon>favorite</mat-icon>
+              <mat-drawer #top class="sidenav mat-elevation-z8" mode="side" position="end">
+                <mat-icon (click)="top.close()">clear</mat-icon>
+
+                <mat-card class="mat-elevation-z8">
+                  <mat-card-content>Simple card</mat-card-content>
+                </mat-card>
+              </mat-drawer>
+              <mat-icon (click)="top.toggle()">notifications</mat-icon>
+            </div>
+          </mat-toolbar>
+        </div>
+
+        <div class="outlet-area">
+          <div class="mat-elevation-z8">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

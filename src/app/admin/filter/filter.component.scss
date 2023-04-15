@@ -1,0 +1,23 @@
+mat-card {
+    position: relative;
+    margin: 10px 0;
+    padding-top: 5px;
+    box-shadow: 0 0 10px gray;
+    overflow: scroll;
+    .user-type {
+        mat-form-field {
+            width: 180px;
+        }
+    }
+    .date {
+        margin: 0px 30px;
+        mat-form-field {
+            width: 180px;
+        }
+    }
+    .search {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+
+}
