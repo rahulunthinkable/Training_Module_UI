@@ -9,12 +9,15 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { SignUPComponent } from './sign-up/sign-up.component';
 import { MaterialModule } from '../material/material.module';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     Login,
     ForgotPasswordComponent,
     SignUPComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,7 @@ import { MaterialModule } from '../material/material.module';
     ReactiveFormsModule,
     AuthenticationRoutingModule,
     MaterialModule,
-  ]
+    HttpClientModule,
+  ],
 })
-export class authenticationModule { }
+export class authenticationModule {}

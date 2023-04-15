@@ -5,23 +5,29 @@
         <div class="user-content">
           <h1>Login For Learning new Technologies</h1>
         </div>
-        <form [formGroup]="formGroup">
+        <form [formGroup]="loginForm">
         <div class="input-element">
           <mat-form-field class="w-100">
             <input matInput placeholder="Enter your email" formControlName="email" required>
-            <mat-error *ngIf="formGroup.get('email')">{{getErrorMessage()}}</mat-error>
+            <mat-error *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">
+              Please enter email
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="input-element">
           <mat-form-field appearance="fill" class="w-100">
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Enter your password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">
+              Please enter password
+            </mat-error>
           </mat-form-field>
         </div>
         </form>
-      <div class="checkbox">
+        <div class="checkbox">
         <mat-checkbox>Remember Me</mat-checkbox>
         <a href="session/forget-password" class="a-color">Forget Password</a>
       </div>
@@ -34,7 +40,7 @@
       </div>
       </div>
       <div class="col-md-6 col-sm-12">
-        <img src="assets/Images/login.png" class="img-fluid">
+        <img src="assets/Images/login.png" class="img-fluid" alt="logo">
       </div>
     </div>
   </div>
