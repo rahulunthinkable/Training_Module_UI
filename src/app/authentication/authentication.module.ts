@@ -23,7 +23,7 @@ import { MaterialModule } from '../material/material.module';
     PortalModule,
     ReactiveFormsModule,
     AuthenticationRoutingModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class authenticationModule { }
