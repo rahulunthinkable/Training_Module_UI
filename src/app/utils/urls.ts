@@ -1,3 +1,4 @@
 export const url = {
-    LOGIN_URL: `auth/login`
+    LOGIN_URL: `auth/login`,
+    SIGNUP_URL: `auth/signup`,
 }

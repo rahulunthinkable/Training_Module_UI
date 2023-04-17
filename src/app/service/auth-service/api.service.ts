@@ -10,4 +10,8 @@ export class ApiService {
   login(payload: any) {
     return this.genericHttpService.httpPost(url.LOGIN_URL, payload);
   }
+
+  signup(payload: any) {
+    return this.genericHttpService.httpPost(url.SIGNUP_URL,payload);
+  }
 }

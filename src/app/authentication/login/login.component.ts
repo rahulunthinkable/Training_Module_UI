@@ -22,7 +22,7 @@ export class Login {
   login() {
     this.api.login(this.loginForm.value).subscribe({
       next: (resp) => {
-        console.log(resp,'@@@@');
+        
       }
     })
   }

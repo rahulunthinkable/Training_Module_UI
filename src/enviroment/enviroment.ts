@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://training-module-be-b8ig.vercel.app',
+  // apiUrl: 'https://training-module-be-b8ig.vercel.app',
+  apiUrl: 'http://localhost:3000',
 };

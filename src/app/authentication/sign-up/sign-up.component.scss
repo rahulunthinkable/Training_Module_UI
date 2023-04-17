@@ -16,6 +16,12 @@
   }
 }
 
+@mixin image-height {
+  @media (max-height: 550px) {
+    @content;
+  }
+}
+
 @mixin padding {
   @media (max-width : 650px) {
     @content;
@@ -162,13 +168,26 @@
     padding: 20px;
 
     img {
-      // width: 90%;
       height: 100%;
       padding: 29% 0;
+      @include image-height{
+        padding: 0;
+      }
       @include padding {
         padding: 5% 0;
         height: auto;
       }
     }
   }
+}
+
+.end-result {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: rgba(255, 0, 0, 0.651);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px gray;
 }
