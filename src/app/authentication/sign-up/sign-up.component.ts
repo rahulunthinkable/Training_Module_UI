@@ -28,24 +28,28 @@ export class SignUPComponent {
     private fb: FormBuilder,
     private api: ApiService,
     private router: Router,
-    ) { }
+  ) { }
 
   register() {
     this.selected = true;
-    if(this.registerForm.valid) {
-      if(this.confirm.nativeElement.value != this.registerForm.controls['password'].value) {
+    if (this.registerForm.valid) {
+      if (this.confirm.nativeElement.value != this.registerForm.controls['password'].value) {
         this.noMatch = true;
       } else {
         this.noMatch = false;
-        this.api.signup(this.registerForm.value).subscribe( {
-          next: (resp) => {
-            this.afterLogin = resp;
-            this.showLabel = true;
-            if(resp == 'success') {
+        this.api.signup(this.registerForm.value).subscribe(
+          {
+            next: (resp) => {
+              this.afterLogin = 'Registraion is successful';
+              this.showLabel = true;
               this.router.navigateByUrl('session');
+            },
+            error: (err) => {
+              this.afterLogin = err.error.message;
+              this.showLabel = true;
             }
           }
-        })
+        )
       }
     }
   }

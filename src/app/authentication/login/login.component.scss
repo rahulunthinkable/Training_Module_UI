@@ -44,3 +44,14 @@
     }
   }
 }
+
+.end-result {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: rgba(255, 0, 0, 0.651);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px gray;
+}
