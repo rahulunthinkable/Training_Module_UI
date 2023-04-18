@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/service/auth-service/api.service';
+import { SnackService } from 'src/app/service/snack-bar/snack.service';
+import { SpinnerService } from 'src/app/service/spinner/spinner.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,18 +12,37 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent {
 
-  formGroup = new FormGroup({
-    password : new FormControl('', [Validators.required]),
+  fogetForm = this.fb.group({
+    userEmail: [null, [Validators.required]],
   });
 
-  hide = true;
-  getErrorMessage() {
-    const passwordControl:any = this.formGroup.get('password');
+  constructor(
+    private fb: FormBuilder,
+    private api: ApiService,
+    private snackService: SnackService,
+    private router: Router, 
+    private spinnerService: SpinnerService,
+  ) { }
 
-    if (passwordControl.hasError('required')) {
-      return 'You must enter a value';
-    }
-    
-    return passwordControl.hasError('email') ? 'Not a valid email' : '';
+  hide = true;
+
+  forgetPassword() {
+    this.api.forget(this.fogetForm.value).subscribe({
+      next: (resp) => {
+        this.spinnerService.loadSpinner();
+        this.snackService.openSnackBar('Success', 1500);
+        setTimeout( () => {
+          this.spinnerService.closeSpinner();
+          this.router.navigateByUrl('session');
+        },1500);
+      },
+      error: (err) => {
+        let errMsg = err.error.message;
+        if(errMsg == "userEmail must be an email") {
+          errMsg = "No Such Email Exists";
+        }
+        this.snackService.openSnackBar(errMsg,1000000);
+      }
+    });
   }
 }

@@ -14,4 +14,8 @@ export class ApiService {
   signup(payload: any) {
     return this.genericHttpService.httpPost(url.SIGNUP_URL,payload);
   }
+
+  forget(payload: any) {
+    return this.genericHttpService.httpPost(url.FORGET_URL,payload);
+  }
 }

@@ -7,6 +7,7 @@ import { SideMenuComponent } from "./components/side-menu/side-menu.component";
 import { RouterModule } from "@angular/router";
 import { ButtonComponent } from './components/button/button.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
     CourseCardComponent,
     SideMenuComponent,
     ButtonComponent,
+    SpinnerLoaderComponent,
   ],
   imports: [MaterialModule, CommonModule, RouterModule, HttpClientModule],
-  exports: [CourseComponent, SideMenuComponent],
+  exports: [CourseComponent, SideMenuComponent,SpinnerLoaderComponent],
 })
 export class SharedModule {}

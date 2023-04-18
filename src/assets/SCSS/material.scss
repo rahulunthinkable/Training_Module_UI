@@ -61,3 +61,8 @@
 .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
   padding-bottom: 13px;
 }
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: rgb(21, 21, 22) !important;
+  
+}

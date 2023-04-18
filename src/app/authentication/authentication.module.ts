@@ -11,6 +11,7 @@ import { SignUPComponent } from './sign-up/sign-up.component';
 import { MaterialModule } from '../material/material.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthenticationRoutingModule,
     MaterialModule,
     HttpClientModule,
+    SharedModule,
   ],
 })
 export class authenticationModule {}
