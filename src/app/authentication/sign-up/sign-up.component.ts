@@ -7,6 +7,7 @@ import { SpinnerService } from 'src/app/service/spinner/spinner.service';
 import { BackEndErrorMessages ,BackEndResponse} from 'src/app/utils/back-end-error-messages';
 import { InternalRoutes } from 'src/app/utils/internal-routes';
 import { SuccessMessages } from 'src/app/utils/success-messages';
+import { SnackClasses } from 'src/app/utils/snack-bar-classes';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,7 +27,7 @@ export class SignUPComponent {
 
   registerForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(2)]],
-    userEmail: [null, Validators.required],
+    userEmail: [null, Validators.required,Validators.email],
     password: [null, [Validators.required, Validators.minLength(6)]],
     confirm_password: [null, [Validators.required]]
   });
@@ -45,7 +46,7 @@ export class SignUPComponent {
   register() {
     this.selected = true;
     if (this.userNameNotNumber()) {
-      this.snackService.openSnackBar(SuccessMessages.USER_NAME_NUMBER, 2500);
+      this.snackService.openSnackBar(SuccessMessages.USER_NAME_NUMBER, 2500, SnackClasses.HALF_SUCCESS);
       return;
     }
     if (this.registerForm.valid) {
@@ -57,7 +58,7 @@ export class SignUPComponent {
             next: (resp) => {
               this.afterSignup = SuccessMessages.SIGNUP_SUCCESS;
               this.showLabel = true;
-              this.snackService.openSnackBar(this.afterSignup, 1000);
+              this.snackService.openSnackBar(this.afterSignup, 1000,SnackClasses.SUCCESS);
               this.spinnerService.closeSpinner();
               this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
             },
@@ -68,7 +69,7 @@ export class SignUPComponent {
               if (this.afterSignup == BackEndErrorMessages.NOT_A_MAIL) {
                 this.afterSignup = BackEndResponse.NOT_A_MAIL;
               }
-              this.snackService.openSnackBar(this.afterSignup, 2000);
+              this.snackService.openSnackBar(this.afterSignup, 2000, SnackClasses.ERROR);
             }
           }
         )

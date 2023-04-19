@@ -10,11 +10,13 @@ export class SnackService {
     private _snackBar: MatSnackBar,
   ) { }
 
-  openSnackBar(message: string, time: any) {
+  openSnackBar(message: string, time: any, snackType : any) {
     this._snackBar.open(message, 'Close', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
-    });
+      panelClass: snackType,
+    },);
+    console.log(snackType);
     setTimeout(() => {
       this._snackBar.dismiss();
     }, time);

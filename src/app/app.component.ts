@@ -9,13 +9,15 @@ import { SpinnerService } from './service/spinner/spinner.service';
 export class AppComponent {
   title = 'LearningResources';
   spinner = false;
+  subject : any;
 
   constructor(
     private spinnerService: SpinnerService,
   ) { }
 
   ngOnInit() {
-    this.spinnerService.spinnerSubject.subscribe( (data) => {
+    this.subject = this.spinnerService.spinnerSubject;
+    this.subject.subscribe( (data : any) => {
       this.spinner = data;
     });
   }

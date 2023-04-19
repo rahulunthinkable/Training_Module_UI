@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject,  } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, flatMap } from 'rxjs';
@@ -8,6 +8,8 @@ import { SpinnerService } from 'src/app/service/spinner/spinner.service';
 import { BackEndErrorMessages, BackEndResponse } from 'src/app/utils/back-end-error-messages';
 import { SuccessMessages } from 'src/app/utils/success-messages';
 import { InternalRoutes } from 'src/app/utils/internal-routes';
+import { LocalStorageToken } from 'src/app/localstorage.token';
+import { SnackClasses } from 'src/app/utils/snack-bar-classes';
 
 @Component({
   selector: 'app-login-form',
@@ -27,6 +29,7 @@ export class Login {
   });
 
   constructor(
+    @Inject(LocalStorageToken) private localstorage: Storage,
     private apiService: ApiService,
     private router: Router,
     private snackService: SnackService,
@@ -42,8 +45,9 @@ export class Login {
         next: (resp) => {
           this.afterLogin = SuccessMessages.LOGIN_SUCCESS;
           this.showLabel = true;
-          this.snackService.openSnackBar(this.afterLogin, 1000);
+          this.snackService.openSnackBar(this.afterLogin, 1000,SnackClasses.SUCCESS);
           this.spinnerService.closeSpinner();
+          this.localstorage.setItem('token', resp.token);
           this.router.navigateByUrl(InternalRoutes.HOME);
         },
         error: (err) => {
@@ -53,7 +57,7 @@ export class Login {
           if (this.afterLogin == BackEndErrorMessages.NOT_A_MAIL) {
             this.afterLogin = BackEndResponse.NOT_A_MAIL;
           }
-          this.snackService.openSnackBar(this.afterLogin, 2000);
+          this.snackService.openSnackBar(this.afterLogin, 2000,SnackClasses.ERROR);
         }
       })
     }
