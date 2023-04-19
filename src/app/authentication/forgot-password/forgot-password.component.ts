@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/service/auth-service/api.service';
+import { SnackService } from 'src/app/service/snack-bar/snack.service';
+import { SpinnerService } from 'src/app/service/spinner/spinner.service';
+import { SuccessMessages } from 'src/app/utils/success-messages';
+import { InternalRoutes } from 'src/app/utils/internal-routes';
+import { BackEndErrorMessages, BackEndResponse } from 'src/app/utils/back-end-error-messages';
+import { SnackClasses } from 'src/app/utils/snack-bar-classes';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,18 +16,36 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent {
 
-  formGroup = new FormGroup({
-    password : new FormControl('', [Validators.required]),
+  forgetForm = this.formBuilder.group({
+    userEmail: [null, [Validators.required,Validators.email]],
   });
 
-  hide = true;
-  getErrorMessage() {
-    const passwordControl:any = this.formGroup.get('password');
+  constructor(
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private snackService: SnackService,
+    private router: Router,
+    private spinnerService: SpinnerService,
+  ) { }
 
-    if (passwordControl.hasError('required')) {
-      return 'You must enter a value';
-    }
-    
-    return passwordControl.hasError('email') ? 'Not a valid email' : '';
+  hide = true;
+
+  forgetPassword() {
+    this.spinnerService.loadSpinner();
+    this.apiService.forget(this.forgetForm.value).subscribe({
+      next: (resp) => {
+        this.snackService.openSnackBar(SuccessMessages.FORGET_SUCCESS, 1500, SnackClasses.SUCCESS);
+        this.spinnerService.closeSpinner();
+        this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
+      },
+      error: (err) => {
+        this.spinnerService.closeSpinner();
+        let errMsg = err.error.message;
+        if (errMsg == BackEndErrorMessages.NOT_A_MAIL) {
+          errMsg = BackEndResponse.NOT_A_MAIL;
+        }
+        this.snackService.openSnackBar(errMsg, 2000, SnackClasses.ERROR);
+      }
+    });
   }
 }

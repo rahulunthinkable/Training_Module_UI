@@ -1,6 +1,6 @@
 <div class="main-card">
   <mat-drawer-container class="main-container app-bg">
-    <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <mat-drawer #drawer class="sidenav mat-elevation-z8" mode="side" opened>
       <div class="usr-img">
         <img src="../../assets/Images/user.png" alt="" />
       </div>
@@ -12,7 +12,7 @@
     <mat-drawer-content>
       <div class="main-content-area">
         <div class="main-toolbar mat-elevation-z8">
-          <mat-toolbar color="primary">
+          <mat-toolbar>
             <mat-icon (click)="drawer.toggle()">menu</mat-icon>
             <span class="logo">My App</span>
             <div class="notification-icon">

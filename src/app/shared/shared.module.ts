@@ -5,19 +5,19 @@ import { CourseCardComponent } from "./components/course-card/course-card.compon
 import { MaterialModule } from "../material/material.module";
 import { SideMenuComponent } from "./components/side-menu/side-menu.component";
 import { RouterModule } from "@angular/router";
+import { ButtonComponent } from './components/button/button.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
 
 @NgModule({
   declarations: [
     CourseComponent,
     CourseCardComponent,
-    SideMenuComponent],
-  imports: [
-    MaterialModule,
-    CommonModule,
-    RouterModule
+    SideMenuComponent,
+    ButtonComponent,
+    SpinnerLoaderComponent,
   ],
-  exports: [CourseComponent,
-     SideMenuComponent
-    ],
+  imports: [MaterialModule, CommonModule, RouterModule, HttpClientModule],
+  exports: [CourseComponent, SideMenuComponent,SpinnerLoaderComponent],
 })
 export class SharedModule {}
