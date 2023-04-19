@@ -16,7 +16,6 @@ export class SnackService {
       verticalPosition: 'top',
       panelClass: snackType,
     },);
-    console.log(snackType);
     setTimeout(() => {
       this._snackBar.dismiss();
     }, time);

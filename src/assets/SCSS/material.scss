@@ -85,7 +85,7 @@
 .error-snackbar {
   max-width: max-content !important;
   color: white;
-  --mdc-snackbar-container-color: var(--delete-color);
+  --mdc-snackbar-container-color: var(--delete-color) ;
   border-color: #f5c6cb;
 
   --mat-mdc-snack-bar-button-color: var(--white-color);
