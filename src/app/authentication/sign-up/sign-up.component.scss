@@ -16,6 +16,12 @@
   }
 }
 
+@mixin no-image2 {
+  @media (max-width : 480px) {
+    @content;
+  }
+}
+
 @mixin image-height {
   @media (max-height: 550px) {
     @content;
@@ -28,8 +34,14 @@
   }
 }
 
+@mixin image-hide {
+  @media (max-width : 770px) {
+    @content;
+  }
+}
+
 @mixin totalheight {
-  @media (min-height: 500px) {
+  @media (min-height: 500px) and (min-width: 770px) {
     @content;
   }
 }
@@ -112,6 +124,24 @@
       }
 
       .pass {
+        .password {
+          @include image2 {
+            width: 50%;
+          }
+          @include no-image2 {
+            width: 100%;
+          }
+        }
+        .c-password {
+          @include image2 {
+            width: 48%;
+            padding-left: 2%;
+          }
+          @include no-image2 {
+            width: 100%;
+            padding-left: 0;
+          }
+        }
         input {
           width: 90%;
 
@@ -128,18 +158,6 @@
           border-right: none;
         }
 
-        .eye-but {
-          border: 1px solid rgba(0, 0, 0, 0.493);
-          border-radius: 0 5px 5px 0;
-          position: relative;
-          border-left: none;
-          height: 51px;
-          bottom: -6px;
-
-          mat-icon {
-            position: relative;
-          }
-        }
       }
 
       .reg {
@@ -159,6 +177,9 @@
     text-align: center;
     margin-bottom: 30px;
     padding: 20px;
+    @include image-hide {
+      display: none;
+    }
 
     img {
       height: 90%;

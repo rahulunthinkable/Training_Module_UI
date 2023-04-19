@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/auth-service/api.service';
 import { SnackService } from 'src/app/service/snack-bar/snack.service';
 import { SpinnerService } from 'src/app/service/spinner/spinner.service';
+import { SuccessMessages } from 'src/app/utils/success-messages';
+import { InternalRoutes } from 'src/app/utils/internal-routes';
+import { BackEndErrorMessages, BackEndResponse } from 'src/app/utils/back-end-error-messages';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,36 +15,35 @@ import { SpinnerService } from 'src/app/service/spinner/spinner.service';
 })
 export class ForgotPasswordComponent {
 
-  fogetForm = this.fb.group({
+  forgetForm = this.formBuilder.group({
     userEmail: [null, [Validators.required]],
   });
 
   constructor(
-    private fb: FormBuilder,
-    private api: ApiService,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
     private snackService: SnackService,
-    private router: Router, 
+    private router: Router,
     private spinnerService: SpinnerService,
   ) { }
 
   hide = true;
 
   forgetPassword() {
-    this.api.forget(this.fogetForm.value).subscribe({
+    this.spinnerService.loadSpinner();
+    this.apiService.forget(this.forgetForm.value).subscribe({
       next: (resp) => {
-        this.spinnerService.loadSpinner();
-        this.snackService.openSnackBar('Success', 1500);
-        setTimeout( () => {
-          this.spinnerService.closeSpinner();
-          this.router.navigateByUrl('session');
-        },1500);
+        this.snackService.openSnackBar(SuccessMessages.FORGET_SUCCESS, 1500);
+        this.spinnerService.closeSpinner();
+        this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
       },
       error: (err) => {
+        this.spinnerService.closeSpinner();
         let errMsg = err.error.message;
-        if(errMsg == "userEmail must be an email") {
-          errMsg = "No Such Email Exists";
+        if (errMsg == BackEndErrorMessages.NOT_A_MAIL) {
+          errMsg = BackEndResponse.NOT_A_MAIL;
         }
-        this.snackService.openSnackBar(errMsg,1000000);
+        this.snackService.openSnackBar(errMsg, 2000);
       }
     });
   }

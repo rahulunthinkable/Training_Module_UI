@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/auth-service/api.service';
 import { SnackService } from 'src/app/service/snack-bar/snack.service';
 import { SpinnerService } from 'src/app/service/spinner/spinner.service';
+import { BackEndErrorMessages ,BackEndResponse} from 'src/app/utils/back-end-error-messages';
+import { InternalRoutes } from 'src/app/utils/internal-routes';
+import { SuccessMessages } from 'src/app/utils/success-messages';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,49 +24,51 @@ export class SignUPComponent {
 
   @ViewChild('confirm') confirm !: ElementRef;
 
-  registerForm = this.fb.group({
+  registerForm = this.formBuilder.group({
     userName: ['', [Validators.required, Validators.minLength(2)]],
     userEmail: [null, Validators.required],
     password: [null, [Validators.required, Validators.minLength(6)]],
-    cpassword: [null, [Validators.required]]
+    confirm_password: [null, [Validators.required]]
   });
 
   constructor(
-    private fb: FormBuilder,
-    private api: ApiService,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
     private router: Router,
     private snackService: SnackService,
     private spinnerService: SpinnerService,
   ) { }
 
+  ngOnInit() {
+  }
+
   register() {
     this.selected = true;
-    if(this.userNameNotNumber()) {
-      this.snackService.openSnackBar('Not a valid user Name', 2500);
+    if (this.userNameNotNumber()) {
+      this.snackService.openSnackBar(SuccessMessages.USER_NAME_NUMBER, 2500);
       return;
     }
     if (this.registerForm.valid) {
       if (this.confirm.nativeElement.value != this.registerForm.controls['password'].value) {
       } else {
-        this.api.signup(this.registerForm.value).subscribe(
+        this.spinnerService.loadSpinner();
+        this.apiService.signup(this.registerForm.value).subscribe(
           {
             next: (resp) => {
-              this.spinnerService.loadSpinner();
-              this.afterSignup = 'Registraion is successful';
+              this.afterSignup = SuccessMessages.SIGNUP_SUCCESS;
               this.showLabel = true;
-              this.snackService.openSnackBar(this.afterSignup,1000);
-              setTimeout(() => {
-                this.spinnerService.closeSpinner();
-                this.router.navigateByUrl('session');
-              }, 1000)
+              this.snackService.openSnackBar(this.afterSignup, 1000);
+              this.spinnerService.closeSpinner();
+              this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
             },
             error: (err) => {
+              this.spinnerService.closeSpinner();
               this.afterSignup = err.error.message;
               this.showLabel = true;
-              if(this.afterSignup == 'userEmail must be an email') {
-                this.afterSignup = "No Such Email Exists";
+              if (this.afterSignup == BackEndErrorMessages.NOT_A_MAIL) {
+                this.afterSignup = BackEndResponse.NOT_A_MAIL;
               }
-              this.snackService.openSnackBar(this.afterSignup,2000);
+              this.snackService.openSnackBar(this.afterSignup, 2000);
             }
           }
         )
@@ -72,22 +77,17 @@ export class SignUPComponent {
   }
 
   userNameNotNumber() {
-    if(!isNaN(Number(this.registerForm.controls['userName'].value))) {
+    if (!isNaN(Number(this.registerForm.controls['userName'].value))) {
       return true;
     }
     return false;
   }
 
   matchPass() {
-    this.checkMatch();
-  }
-
-  checkMatch() {
     if (this.confirm.nativeElement.value == this.registerForm.controls['password'].value) {
       this.passMatch = true;
     } else {
       this.passMatch = false;
-    } 
+    }
   }
-  
 }

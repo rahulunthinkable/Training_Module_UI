@@ -29,7 +29,7 @@
 			</div>
 			<div class="field pass">
 
-				<mat-form-field class="w-50" appearance="fill">
+				<mat-form-field class="password" appearance="fill">
 					<input (keyup)="matchPass()" autocomplete="off" matInput [type]="hide ? 'password' : 'text'"
 						placeholder="Enter your password" formControlName="password">
 					<button type="button" mat-icon-button matSuffix (click)="hide = !hide"
@@ -44,14 +44,14 @@
 					</mat-error>
 				</mat-form-field>
 
-				<mat-form-field class="w-50 ps-3">
+				<mat-form-field class="c-password">
 					<input (keyup)="matchPass()" #confirm matInput placeholder=" Confirm password" type="text"
-						formControlName="cpassword">
-					<mat-error *ngIf="registerForm.controls['cpassword'].hasError('required')">
+						formControlName="confirm_password">
+					<mat-error *ngIf="registerForm.controls['confirm_password'].hasError('required')">
 						Please fill this field
 					</mat-error>
 				</mat-form-field>
-				<h4 *ngIf="!passMatch && registerForm.controls['cpassword'].dirty">Password Not Matched</h4>
+				<h4 *ngIf="!passMatch && registerForm.controls['confirm_password'].dirty">Password Not Matched</h4>
 			</div>
 			<div class="field reg">
 				<div [ngClass]="{'not-allowed' : !registerForm.valid} || !passMatch">
