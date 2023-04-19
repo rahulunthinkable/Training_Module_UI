@@ -33,7 +33,7 @@
         </form>
         <div class="checkbox">
           <mat-checkbox>Remember Me</mat-checkbox>
-          <a href="session/forget-password" class="a-color">Forget Password</a>
+          <a routerLink="/session/forget-password" class="a-color">Forget Password</a>
         </div>
         <div [ngClass]="{'not-allowed' : !loginForm.valid}">
           <button class="w-100" [disabled]="!loginForm.valid" mat-raised-button (click)="login()">Login</button>
