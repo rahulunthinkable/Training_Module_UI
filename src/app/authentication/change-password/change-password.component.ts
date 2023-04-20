@@ -38,12 +38,12 @@ export class ChangePasswordComponent {
     private spinnerService: SpinnerService
   ) {}
 
-  register() {
+  changePassword() {
     if (this.changeForm.valid) {
       this.spinnerService.loadSpinner();
       this.apiService.change_password(this.changeForm.value).subscribe({
         next: (resp) => {
-          this.afterSignup = SuccessMessages.SIGNUP_SUCCESS;
+          this.afterSignup = SuccessMessages.FORGET_SUCCESS;
           this.snackService.openSnackBar(
             this.afterSignup,
             1000,
@@ -55,9 +55,7 @@ export class ChangePasswordComponent {
         error: (err) => {
           this.spinnerService.closeSpinner();
           this.afterSignup = err.error.message;
-          if (this.afterSignup == BackEndErrorMessages.NOT_A_MAIL) {
-            this.afterSignup = BackEndResponse.NOT_A_MAIL;
-          } else if (this.afterSignup == BackEndErrorMessages.SERVER_ERROR) {
+          if (this.afterSignup == BackEndErrorMessages.SERVER_ERROR) {
             this.afterSignup = BackEndResponse.SERVER_ERROR;
           }
           this.snackService.openSnackBar(
