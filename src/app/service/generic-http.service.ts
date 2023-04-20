@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../enviroment/enviroment";
 @Injectable({
@@ -11,5 +11,9 @@ export class GenericHttpService {
 
   httpPost(url: string, payload: any) {
     return this.http.post<any>(`${this.BACKEND_API_URL}/${url}`, payload);
+  }
+
+  httpPatch(url: string, payload: any) {
+    return this.http.patch<any>(`${this.BACKEND_API_URL}/${url}`, payload);
   }
 }
