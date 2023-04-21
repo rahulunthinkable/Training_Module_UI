@@ -7,3 +7,8 @@ export const url = {
   CHANGE_URL: `auth/change-password`,
   USER_LIST_URL: `users`,
 };
+
+export const courseUrl = {
+  COURSE_URL: "courses",
+  CATEGORY_URL: "category",
+};

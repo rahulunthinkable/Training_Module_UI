@@ -1,76 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { CourseService } from "src/app/service/course-service/course-service.service";
+import { SpinnerService } from "src/app/service/spinner/spinner.service";
+import { courseFilter } from "./course-filter/course-filter";
 
 @Component({
-  selector: 'app-course',
-  templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss']
+  selector: "app-course",
+  templateUrl: "./course.component.html",
+  styleUrls: ["./course.component.scss"],
 })
 export class CourseComponent implements OnInit {
   courseData: any;
-  constructor() {}
+  categories: any;
+  filterOptions: any = courseFilter;
+  constructor(
+    private courseApiService: CourseService,
+    private categoryApiService: CourseService,
+    private spinnerService: SpinnerService
+  ) {}
 
   ngOnInit(): void {
-    this.courseData = [
-      {
-        heading: 'What is Html',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Css',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is JavaScript',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Angular JS',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Angular',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is React Js',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Reacti Native',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Express Js',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Next Js',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Nest Js',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is Mongo DB',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-      {
-        heading: 'What is My SQL',
-        paragraph:
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum quaerat sed suscipit. Vero fugit repellat quas ipsum maxime, sit dolorum aperiam ex rem est qui labore ut accusamus doloremque blanditiis!',
-      },
-    ];
+    this.spinnerService.loadSpinner();
+    this.courseApiService
+      .requestFromMulultibleResource()
+      .subscribe((responseList: any[]) => {
+        this.courseData = responseList[0];
+        this.courseData = this.courseData.map((course: any) => {
+          course.image = `data:image/png;base64,${course.image}`;
+          return course;
+        });
+
+        this.categories = responseList[1];
+        this.filterOptions[0].options = this.categories.map((category: any) => {
+          category["viewValue"] = category.categoryName;
+          return category;
+        });
+        this.spinnerService.closeSpinner();
+      });
+  }
+
+  selectedFilters(event: Event) {
   }
 }

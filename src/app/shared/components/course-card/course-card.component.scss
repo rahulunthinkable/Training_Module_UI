@@ -1,22 +1,27 @@
 .main-content {
   padding: 10px;
 
-  div{
+  div {
     margin: 10px 0;
     cursor: pointer;
   }
 
-  .card-containe {
+  .card-container {
     box-shadow: 0px 0px 5px black;
 
-    img{
+    img {
       height: 200px;
     }
-    
+
   }
-  .title{
+
+  .title {
     text-align: justify;
     overflow: hidden;
+
+    .category {
+      font-weight: bold;
+    }
   }
 
 }
