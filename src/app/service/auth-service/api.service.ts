@@ -29,4 +29,8 @@ export class ApiService {
     let changeUrl = url.CHANGE_URL + "/" + this.userId;
     return this.genericHttpService.httpPatch(changeUrl, payload);
   }
+
+  getUserList(params: any) {
+    return this.genericHttpService.httpGet(url.USER_LIST_URL, params);
+  }
 }

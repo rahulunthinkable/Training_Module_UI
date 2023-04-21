@@ -1,34 +1,77 @@
-import { Component } from '@angular/core';
-import { PeriodicElement } from '../interfaces/interface';
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {UserId: 1, Name: 'Hydrogen', Usertype: 'Trainer', DOJ: '11/02/12' , CourcesEnrolled:'HTML'},
-  {UserId: 2, Name: 'Helium', Usertype: 'Student', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 3, Name: 'Lithium', Usertype: 'Trainer', DOJ: '01/01/10',  CourcesEnrolled:'HTML'},
-  {UserId: 4, Name: 'Beryllium', Usertype: 'Trainer', DOJ: '11/02/02',  CourcesEnrolled:'HTML'},
-  {UserId: 5, Name: 'Boron', Usertype: 'User', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 6, Name: 'Carbon', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 7, Name: 'Nitrogen', Usertype: 'Trainee', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 8, Name: 'Oxygen', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 9, Name: 'Fluorine', Usertype: 'Trainer', DOJ: '11/02/12',  CourcesEnrolled:'HTML'},
-  {UserId: 10, Name: 'Neon', Usertype: 'Trainer', DOJ: '11/02/12', CourcesEnrolled:'HTML'},
-];
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subject, takeUntil } from "rxjs";
+import { ApiService } from "src/app/service/auth-service/api.service";
+import { SnackService } from "src/app/service/snack-bar/snack.service";
+import { SpinnerService } from "src/app/service/spinner/spinner.service";
+import { UserlistColdefs } from "./userlist-coldefs";
+import { ErrorMessages } from "src/app/utils/error-messages";
+import { SnackClasses } from "src/app/utils/snack-bar-classes";
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: "app-user-table",
+  templateUrl: "./user-table.component.html",
+  styleUrls: ["./user-table.component.scss"],
 })
-export class UserTableComponent {
-  displayedColumns: string[] = ['UserId', 'Name', 'Usertype', 'DOJ','CourcesEnrolled'];
-  dataSource = ELEMENT_DATA;
+export class UserTableComponent implements OnInit, OnDestroy {
+  displayedColumns: any;
+  dataSource: any;
+  totalLength: any;
+  limit = 10;
+  skip = 0;
 
-  selectedUser(value: any) {
+  private destroy: Subject<boolean> = new Subject<boolean>();
+
+  constructor(
+    private apiService: ApiService,
+    private snackbarService: SnackService,
+    private loader: SpinnerService
+  ) {}
+
+  ngOnInit() {
+    this.displayedColumns = new UserlistColdefs().columns;
+    this.getUserList();
   }
 
-  selectedDate(value: any) {
+  getUserList() {
+    this.loader.loadSpinner();
+    const payload = {
+      limit: this.limit,
+      skip: this.skip,
+    };
+    this.apiService
+      .getUserList(payload)
+      .pipe(takeUntil(this.destroy))
+      .subscribe(
+        (res: any) => {
+          this.loader.closeSpinner();
+          this.dataSource = res.records;
+          this.totalLength = res.totalLength;
+        },
+        (err) => {
+          this.loader.closeSpinner();
+          this.snackbarService.openSnackBar(
+            ErrorMessages.SOMETHING_WENT_WRONG,
+            100,
+            SnackClasses.ERROR
+          );
+        }
+      );
   }
 
-  selectedSearch(value: any) {
+  selectedUser(value: any) {}
+
+  selectedDate(value: any) {}
+
+  selectedSearch(value: any) {}
+
+  pageChange(event: any) {
+    this.limit = event.pageSize;
+    this.skip = event.pageSize * event.pageIndex;
+    this.getUserList();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(true);
+    this.destroy.complete();
   }
 }

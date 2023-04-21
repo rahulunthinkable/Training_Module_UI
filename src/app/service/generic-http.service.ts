@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../enviroment/enviroment";
 @Injectable({
@@ -15,5 +15,12 @@ export class GenericHttpService {
 
   httpPatch(url: string, payload: any) {
     return this.http.patch<any>(`${this.BACKEND_API_URL}/${url}`, payload);
+  }
+
+  httpGet(url:string, params:any) {
+    let queryParams= new HttpParams();
+    queryParams =  queryParams.append("limit",params.limit);
+    queryParams =  queryParams.append("skip",params.skip);
+    return this.http.get<any>(`${this.BACKEND_API_URL}/${url}`,{params: queryParams});
   }
 }

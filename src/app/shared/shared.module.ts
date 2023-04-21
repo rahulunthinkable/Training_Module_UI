@@ -8,6 +8,7 @@ import { RouterModule } from "@angular/router";
 import { ButtonComponent } from './components/button/button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-loader.component';
+import { DynamicTableComponent } from './components/dynamic-table/dynamic-table.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,9 @@ import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-load
     SideMenuComponent,
     ButtonComponent,
     SpinnerLoaderComponent,
+    DynamicTableComponent,
   ],
   imports: [MaterialModule, CommonModule, RouterModule, HttpClientModule],
-  exports: [CourseComponent, SideMenuComponent,SpinnerLoaderComponent],
+  exports: [CourseComponent, SideMenuComponent,SpinnerLoaderComponent, DynamicTableComponent],
 })
 export class SharedModule {}
