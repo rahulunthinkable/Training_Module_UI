@@ -17,10 +17,7 @@ export class GenericHttpService {
     return this.http.patch<any>(`${this.BACKEND_API_URL}/${url}`, payload);
   }
 
-  httpGet(url:string, params:any) {
-    let queryParams= new HttpParams();
-    queryParams =  queryParams.append("limit",params.limit);
-    queryParams =  queryParams.append("skip",params.skip);
+  httpGet(url:string, queryParams?:any) {
     return this.http.get<any>(`${this.BACKEND_API_URL}/${url}`,{params: queryParams});
   }
 }
