@@ -6,12 +6,6 @@ export const courseFilter = [
     key: "category",
   },
   {
-    label: "Random",
-    type: "dropdown",
-    options: [],
-    key: "random",
-  },
-  {
     label: "Created Date",
     type: "date",
     key: "date",
