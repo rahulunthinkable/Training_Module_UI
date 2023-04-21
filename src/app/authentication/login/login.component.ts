@@ -48,7 +48,7 @@ export class Login {
           this.snackService.openSnackBar(this.afterLogin, 1000,SnackClasses.SUCCESS);
           this.spinnerService.closeSpinner();
           this.localstorage.setItem('token', resp.token);
-          this.router.navigateByUrl(InternalRoutes.HOME);
+          this.router.navigateByUrl(InternalRoutes.ADMIN);
         },
         error: (err) => {
           this.spinnerService.closeSpinner();

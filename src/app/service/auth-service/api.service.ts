@@ -2,6 +2,7 @@ import { Inject, Injectable } from "@angular/core";
 import { GenericHttpService } from "../generic-http.service";
 import { url } from "../../utils/urls";
 import { LocalStorageToken } from "src/app/localstorage.token";
+import { HttpParams } from "@angular/common/http";
 @Injectable({
   providedIn: "root",
 })
@@ -28,5 +29,12 @@ export class ApiService {
   change_password(payload: any) {
     let changeUrl = url.CHANGE_URL + "/" + this.userId;
     return this.genericHttpService.httpPatch(changeUrl, payload);
+  }
+
+  getUserList(params: any) {
+    let queryParams= new HttpParams();
+    queryParams =  queryParams.append("limit",params.limit);
+    queryParams =  queryParams.append("skip",params.skip);
+    return this.genericHttpService.httpGet(url.USER_LIST_URL, queryParams);
   }
 }
