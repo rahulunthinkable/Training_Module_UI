@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginGuard } from './guards/login.guard';
+import { LoginGuard } from './guards/login-guard/login.guard';
+import { AfterLoginGuard } from './guards/after-login-guard/after-login.guard';
+
 const routes: Routes = [
 {
   path:'',
@@ -10,7 +12,8 @@ const routes: Routes = [
 },
 {
   path:'session',
-  loadChildren: () => import('./authentication/authentication.module').then((m) => m.authenticationModule)
+  loadChildren: () => import('./authentication/authentication.module').then((m) => m.authenticationModule),
+  canActivate:[AfterLoginGuard],
 },
 {
   path:'home',
@@ -22,7 +25,8 @@ const routes: Routes = [
     }
   ],
   canActivate: [LoginGuard],
-}
+  canLoad:[LoginGuard],
+},
 ];
 
 @NgModule({

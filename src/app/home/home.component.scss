@@ -3,10 +3,15 @@
   .main-container {
 
     .sidenav {
-      width: 20%;
+      width: 210px;
       height: 100vh;
       background: #ffffff;
       color: #fff;
+      .close {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+      }
 
       .usr-img {
         padding: 30px 10px;
@@ -14,11 +19,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
-        img {
-          width: 75%;
-          height: 200px;
-        }
       }
 
       .dashboard-title {
@@ -30,12 +30,16 @@
 
     .main-content-area {
       height: 100vh;
+      max-width: 2500px;
 
       .main-toolbar {
+        position: relative;
+        .menu-icon {
+          width: 30px;
+        }
         mat-toolbar {
           color: #fff;
           background: #3f9eb5;
-
         }
       }
 
@@ -53,6 +57,28 @@
 
     .logo {
       margin-left: 10px;
+    }
+    .notification-icon {
+      .profile-sec {
+        position: absolute;
+        top: 50px;
+        right: 30px;
+        width: 150px;
+        color: black;
+        z-index: 100;
+        background-color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        .logout {
+          position: relative;
+          cursor: pointer;
+          mat-icon {
+            position: relative;
+            bottom: -2px;
+          }
+        }
+      }
     }
   }
 
@@ -75,4 +101,8 @@
 
 .outlet-area {
   margin: 10px;
+}
+
+mat-icon {
+  cursor: pointer;
 }
