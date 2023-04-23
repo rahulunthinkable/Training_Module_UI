@@ -6,8 +6,6 @@ import {
   Output,
   ViewChild,
 } from "@angular/core";
-import { NgSwitch, NgSwitchCase } from "@angular/common";
-import { user } from "src/app/admin/interfaces/interface";
 
 @Component({
   selector: "app-filter",
@@ -15,10 +13,6 @@ import { user } from "src/app/admin/interfaces/interface";
   styleUrls: ["./filter.component.scss"],
 })
 export class FilterComponent {
-  searchIcon = true;
-  filterIcon = true;
-  dateIcon = true;
-  allFilter = true;
   filterIsOpen: any = {};
 
   dropDown = false;
@@ -54,40 +48,37 @@ export class FilterComponent {
     this.emitFilters();
   }
 
-
-  closeFilter(data: any) {    
-    if (this.filterIsOpen[data.key+"IsOpen"]) {
+  closeFilter(data: any) {
+    if (this.filterIsOpen[data.key + "IsOpen"]) {
       let isDropDownFalse = true;
-      let isAllDateFalse=true
-      this.filterIsOpen[data.key+'IsOpen'] = false;
+      let isAllDateFalse = true;
+      this.filterIsOpen[data.key + "IsOpen"] = false;
       this.filterData.forEach((filter: any) => {
         if (filter.type == "dropdown") {
-          if (this.filterIsOpen[filter.key+'IsOpen']) {
+          if (this.filterIsOpen[filter.key + "IsOpen"]) {
             isDropDownFalse = false;
           }
-        }
-        else if(filter.type=='date'){
-          if (this.filterIsOpen[filter.key+'IsOpen']) {
+        } else if (filter.type == "date") {
+          if (this.filterIsOpen[filter.key + "IsOpen"]) {
             isAllDateFalse = false;
           }
         }
-      });      
+      });
       if (isDropDownFalse) {
         this.dropDown = false;
-        this.filterData.forEach((filter:any)=>{
-          if(filter.type=='dropdown'){
-            this.filterIsOpen[filter.key+'IsOpen']=true
+        this.filterData.forEach((filter: any) => {
+          if (filter.type == "dropdown") {
+            this.filterIsOpen[filter.key + "IsOpen"] = true;
           }
-        })
-
+        });
       }
       if (isAllDateFalse) {
         this.date = false;
-        this.filterData.forEach((filter:any)=>{
-          if(filter.type=='date'){
-            this.filterIsOpen[filter.key+'IsOpen']=true
+        this.filterData.forEach((filter: any) => {
+          if (filter.type == "date") {
+            this.filterIsOpen[filter.key + "IsOpen"] = true;
           }
-        })
+        });
       }
       let filteredObject = this.filterObject.find(
         (object: any) => Object.keys(object)[0] == data.key
@@ -97,10 +88,9 @@ export class FilterComponent {
     }
   }
 
-
   searchClick(key: any) {
     if (this.filterIsOpen[key + "IsOpen"]) {
-      this.text=false
+      this.text = false;
       this.userSearching(null);
     }
   }
@@ -121,7 +111,7 @@ export class FilterComponent {
     }
     this.emitFilters();
   }
-  resetFilters(){
-    window.location.reload()
+  resetFilters() {
+    window.location.reload();
   }
 }

@@ -23,14 +23,20 @@ export class CourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const req1 = this.courseApiService.getAllCourse().pipe(take(1),catchError((err)=>{
-      return of(null)
-    }))
-    let req2 = this.courseApiService.getAllCategories().pipe(take(1),catchError((err)=>{
-      return of(null)
-    }))
+    const req1 = this.courseApiService.getAllCourse().pipe(
+      take(1),
+      catchError((err) => {
+        return of(null);
+      })
+    );
+    let req2 = this.courseApiService.getAllCategories().pipe(
+      take(1),
+      catchError((err) => {
+        return of(null);
+      })
+    );
 
-    this.spinnerService.loadSpinner()
+    this.spinnerService.loadSpinner();
 
     forkJoin([req1, req2]).subscribe({
       next: (responseList: any) => {

@@ -16,27 +16,29 @@
                         (click)="closeFilter(data)">close</mat-icon>
                 </div>
                 <div class="date" *ngSwitchCase="'date'">
-                    <mat-form-field *ngIf="date && filterIsOpen[data.key+'IsOpen']" appearance="fill" class="date-field">
+                    <mat-form-field *ngIf="date && filterIsOpen[data.key+'IsOpen']" appearance="fill"
+                        class="date-field">
                         <mat-label>{{data.label}}</mat-label>
                         <input autocomplete="off" #dateInputValue (dateInput)="filterSelect(dateInputValue,data)"
                             matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY">
                         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1 ngDefaultControl></mat-datepicker>
                     </mat-form-field>
-                    <mat-icon *ngIf="date && filterIsOpen[data.key+'IsOpen']" class="dateCross" (click)="closeFilter(data)">close</mat-icon>
+                    <mat-icon *ngIf="date && filterIsOpen[data.key+'IsOpen']" class="dateCross"
+                        (click)="closeFilter(data)">close</mat-icon>
                 </div>
                 <div class="search" *ngSwitchCase="'text'">
                     <mat-form-field *ngIf="text && filterIsOpen[data.key+'IsOpen']" appearance="fill">
                         <input #userSearch (focusout)="userSearching($event)" matInput placeholder="Search">
-                        <!-- <mat-icon matSuffix>search</mat-icon> -->
                     </mat-form-field>
-                    <mat-icon *ngIf="text && filterIsOpen[data.key+'IsOpen']" (click)="searchClick(data.key)">close</mat-icon>
+                    <mat-icon *ngIf="text && filterIsOpen[data.key+'IsOpen']"
+                        (click)="searchClick(data.key)">close</mat-icon>
                 </div>
             </ng-container>
         </ng-container>
         <div class="icons">
             <span *ngIf="!dropDown" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
-            <mat-icon *ngIf="!date" (click)="date=true" >date_range</mat-icon>
+            <mat-icon *ngIf="!date" (click)="date=true">date_range</mat-icon>
             <mat-icon *ngIf="!text" (click)="text=true">search</mat-icon>
             <mat-icon (click)="resetFilters()">refresh</mat-icon>
         </div>
