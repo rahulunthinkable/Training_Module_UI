@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { SpinnerService } from "./service/spinner/spinner.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = "LearningResources";
@@ -14,9 +15,8 @@ export class AppComponent {
   constructor(private spinnerService: SpinnerService) {}
 
   ngOnInit() {
-    this.subject = this.spinnerService.spinnerSubject;
-    this.subject.subscribe((data: any) => {
-      this.spinner = data;
-    });
+    // this.spinnerService.spinnerSubject.subscribe((data: any) => {
+    //   this.spinner = data;
+    // });
   }
 }

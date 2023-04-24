@@ -14,6 +14,7 @@ import { SnackClasses } from "src/app/utils/snack-bar-classes";
 })
 export class UserTableComponent implements OnInit, OnDestroy {
   displayedColumns: any;
+  filterOptions:any
   dataSource: any;
   totalLength: any;
   limit = 10;
@@ -29,6 +30,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.displayedColumns = new UserlistColdefs().columns;
+    this.filterOptions= new UserlistColdefs().filters;
     this.getUserList();
   }
 
@@ -58,11 +60,8 @@ export class UserTableComponent implements OnInit, OnDestroy {
       );
   }
 
-  selectedUser(value: any) {}
-
-  selectedDate(value: any) {}
-
-  selectedSearch(value: any) {}
+  selectedFilters(event:Event){
+  }
 
   pageChange(event: any) {
     this.limit = event.pageSize;

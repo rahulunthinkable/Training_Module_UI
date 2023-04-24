@@ -1,8 +1,4 @@
-<app-filter 
-  (userTypeName)="selectedUser($event)" 
-  (selectedDate)="selectedDate($event)"
-  (userSearchName)="selectedSearch($event)"
->
+<app-filter (applyFilters)="selectedFilters($event)" [filterData]="filterOptions">
 </app-filter>
 
 <app-dynamic-table 

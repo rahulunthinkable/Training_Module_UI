@@ -1,0 +1,72 @@
+mat-card {
+    position: relative;
+    margin: 10px 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 0px;
+    box-shadow: 0 0 10px gray;
+    overflow: scroll;
+    min-height: 100px;
+    min-width: 200px;
+    overflow: scroll;
+
+    .user-type {
+        margin-top: 11px;
+        mat-form-field {
+            width: 180px;
+        }
+
+        span {
+            cursor: pointer;
+        }
+    }
+
+    .date {
+        margin: 0px 20px;
+        margin-top: 11px;
+        mat-form-field {
+            width: 180px;
+        }
+
+        mat-icon {
+            cursor: pointer;
+        }
+
+        .dateCross{
+            margin-bottom: 5px !important;
+        }
+    }
+
+    .search {
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        margin-top: 11px;
+
+        mat-icon {
+            cursor: pointer;
+        }
+    }
+
+    mat-card-action{
+        height: 100%;
+    }
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-top: 27px;
+}
+ mat-icon{
+    font-size: 26px;
+    padding-right: 35px !important;
+}
+.custom-icon{
+    padding-right: 10px !important;
+    font-size: 26px;
+}
