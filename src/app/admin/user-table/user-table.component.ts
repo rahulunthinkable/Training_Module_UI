@@ -6,6 +6,7 @@ import { SpinnerService } from "src/app/service/spinner/spinner.service";
 import { UserlistColdefs } from "./userlist-coldefs";
 import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
+import * as moment from "moment";
 
 @Component({
   selector: "app-user-table",
@@ -14,11 +15,13 @@ import { SnackClasses } from "src/app/utils/snack-bar-classes";
 })
 export class UserTableComponent implements OnInit, OnDestroy {
   displayedColumns: any;
-  filterOptions:any
+  filterOptions: any;
   dataSource: any;
   totalLength: any;
   limit = 10;
   skip = 0;
+  filterParams: any = {};
+  reinitialize: boolean = false;
 
   private destroy: Subject<boolean> = new Subject<boolean>();
 
@@ -30,15 +33,21 @@ export class UserTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.displayedColumns = new UserlistColdefs().columns;
-    this.filterOptions= new UserlistColdefs().filters;
+    this.filterOptions = new UserlistColdefs().filters;
     this.getUserList();
   }
 
   getUserList() {
+    this.dataSource = [];
     this.loader.loadSpinner();
     const payload = {
       limit: this.limit,
       skip: this.skip,
+      userType: this.filterParams?.userType ? this.filterParams.userType : "",
+      createdAt: this.filterParams?.date ? this.filterParams.date : "",
+      searchFilter: this.filterParams?.searchFilter
+        ? this.filterParams?.searchFilter
+        : "",
     };
     this.apiService
       .getUserList(payload)
@@ -47,25 +56,40 @@ export class UserTableComponent implements OnInit, OnDestroy {
         (res: any) => {
           this.loader.closeSpinner();
           this.dataSource = res.records;
+          this.dataSource = this.dataSource.map((data: any) => {
+            return {
+              ...data,
+              createdAt: moment(data.createdAt).format("MM/DD/YYYY"),
+            };
+          });
           this.totalLength = res.totalLength;
         },
         (err) => {
           this.loader.closeSpinner();
           this.snackbarService.openSnackBar(
             ErrorMessages.SOMETHING_WENT_WRONG,
-            100,
+            1000,
             SnackClasses.ERROR
           );
         }
       );
   }
 
-  selectedFilters(event:Event){
+  selectedFilters(event: any) {
+    this.filterParams = {
+      ...event[0],
+      ...event[1],
+      ...event[2],
+    };
+    this.skip = 0;
+    this.reinitialize = true;
+    this.getUserList();
   }
 
   pageChange(event: any) {
     this.limit = event.pageSize;
     this.skip = event.pageSize * event.pageIndex;
+    this.reinitialize = false;
     this.getUserList();
   }
 

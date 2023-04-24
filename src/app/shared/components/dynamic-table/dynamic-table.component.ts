@@ -22,6 +22,7 @@ export class DynamicTableComponent implements OnInit, OnChanges {
   @Input() dataSource: any;
   @Input() totalLength: any;
   @Input() defaultPageNo: any;
+  @Input() reinitialize: boolean = false;
 
   @Output() onPageSizeChange = new EventEmitter<any>();
 
@@ -38,6 +39,9 @@ export class DynamicTableComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (this.dataSource && this.dataSource.length) {
       this.dataSource = new MatTableDataSource(this.dataSource);
+    }
+    if(this.reinitialize){
+      this.paginator.pageIndex = 0;
     }
   }
 
