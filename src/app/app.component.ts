@@ -1,5 +1,9 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy, Component,
+} from "@angular/core";
 import { SpinnerService } from "./service/spinner/spinner.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -7,15 +11,19 @@ import { SpinnerService } from "./service/spinner/spinner.service";
   styleUrls: ["./app.component.scss"],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked {
   title = "LearningResources";
   spinner = false;
   subject: any;
 
-  constructor(private spinnerService: SpinnerService) {}
+  constructor(private spinnerService: SpinnerService, private router: Router) {}
+  ngAfterViewChecked(): void {
+    // console.log(this.router.url);
+  }
 
   ngOnInit() {
-    // this.spinnerService.spinnerSubject.subscribe((data: any) => {
+    // this.subject = this.spinnerService.spinnerSubject;
+    // this.subject.subscribe((data: any) => {
     //   this.spinner = data;
     // });
   }
