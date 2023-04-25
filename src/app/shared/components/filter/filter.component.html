@@ -1,6 +1,9 @@
 <div class="filter-com">
     <mat-card class="mat-elevation-z0">
-        <ng-container *ngFor="let data of filterData">
+        <div class="header" title="{{headerName}}">
+            <h2>{{headerName}}</h2>
+        </div>
+        <ng-container *ngFor="let data of filterData" >
             <ng-container [ngSwitch]="data.type">
                 <div class="user-type" *ngSwitchCase="'dropdown'">
                     <mat-form-field *ngIf="filterIsOpen[data.key+'IsOpen'] && dropDown" appearance="fill">
