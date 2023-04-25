@@ -6,7 +6,7 @@ export class UserlistColdefs {
       { tablekey: "userName", label: "Name" },
       { tablekey: "userEmail", label: "Email" },
       { tablekey: "userType", label: "User Type" },
-      { tablekey: "createdAt", label: "Created At" },
+      { tablekey: "createdAt", label: "Date Of Joining" },
       { tablekey: "isActive", label: "isActive" },
     ];
     this.filterOptions=[
@@ -20,22 +20,22 @@ export class UserlistColdefs {
           },
           {
             _id:'trainee',
-            viewValue:'Traiee'
+            viewValue:'Trainee'
           },
           {
-            _id:'none',
-            viewValue:'None'
+            _id:'Admin',
+            viewValue:'Admin'
           }
         ],
         key: "userType",
       },
       {
-        label: "Created Date",
+        label: "Date Of Joining",
         type: "date",
         key: "date",
       },
       {
-        label:'Enter text',
+        label:'Search',
         type:'text',
         key:'searchFilter'
       }
