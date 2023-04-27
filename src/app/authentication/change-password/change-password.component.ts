@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, Inject, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { LocalStorageToken } from "src/app/localstorage.token";
 import { ApiService } from "src/app/service/auth-service/api.service";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { SpinnerService } from "src/app/service/spinner/spinner.service";
@@ -11,6 +12,7 @@ import {
 import { InternalRoutes } from "src/app/utils/internal-routes";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { SuccessMessages } from "src/app/utils/success-messages";
+import { Storage_variables } from "src/app/utils/local-storage-variable";
 
 @Component({
   selector: "app-change-password",
@@ -31,6 +33,7 @@ export class ChangePasswordComponent {
   });
 
   constructor(
+    @Inject(LocalStorageToken) private localstorage: Storage,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private router: Router,
@@ -51,6 +54,7 @@ export class ChangePasswordComponent {
           );
           this.spinnerService.closeSpinner();
           this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
+          this.localstorage.removeItem(Storage_variables._id);
         },
         error: (err) => {
           this.spinnerService.closeSpinner();

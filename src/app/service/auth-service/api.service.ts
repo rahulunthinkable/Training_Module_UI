@@ -3,6 +3,7 @@ import { GenericHttpService } from "../generic-http.service";
 import { url } from "../../utils/urls";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { HttpParams } from "@angular/common/http";
+import { Storage_variables } from "src/app/utils/local-storage-variable";
 @Injectable({
   providedIn: "root",
 })
@@ -12,7 +13,7 @@ export class ApiService {
     @Inject(LocalStorageToken) private localStorage: Storage
   ) {}
 
-  userId = this.localStorage.getItem("_id");
+  userId = this.localStorage.getItem(Storage_variables._id);
 
   login(payload: any) {
     return this.genericHttpService.httpPost(url.LOGIN_URL, payload);

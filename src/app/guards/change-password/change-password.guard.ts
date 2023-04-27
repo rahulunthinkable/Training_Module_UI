@@ -2,25 +2,27 @@ import { Inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LocalStorageToken } from 'src/app/localstorage.token';
-import { InternalRoutes } from 'src/app/utils/internal-routes';
 import { Storage_variables } from 'src/app/utils/local-storage-variable';
+import { InternalRoutes } from 'src/app/utils/internal-routes';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AfterLoginGuard implements CanActivate {
+export class ChangePasswordGuard implements CanActivate {
+
   constructor(
     @Inject(LocalStorageToken) private localstorage : Storage,
-    private router : Router,
+    private router: Router,
   ) { }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.localstorage.getItem(Storage_variables.token)) {
-        let prev_route:any = this.localstorage.getItem(Storage_variables.last_route);
-        this.router.navigateByUrl(prev_route)
-        return false;
+      if(this.localstorage.getItem(Storage_variables._id)) {
+        return true;
       }
-    return true;
+      this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
+    return false;
   }
+  
 }
