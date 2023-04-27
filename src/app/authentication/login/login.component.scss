@@ -38,7 +38,6 @@
     border-radius: 10px;
 
     .title {
-      font-family: "Poppins";
       font-weight: bold;
       font-size: 1.8rem;
       line-height: 2.3rem;
@@ -67,7 +66,6 @@
       .field {
         margin: 10px;
         padding: 0 30px;
-        // line-height: 0;
 
         @include mobile {
           padding: 0 10px;
@@ -91,10 +89,6 @@
 
         .red {
           margin-top: 0px;
-        }
-
-        .full-width {
-          width: 100%;
         }
       }
 
