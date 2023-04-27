@@ -3,16 +3,16 @@ export const courseFilter = [
     label: "Category",
     type: "dropdown",
     options: [],
-    key: "category",
+    key: "categoryId",
   },
   {
     label: "Created Date",
     type: "date",
-    key: "date",
+    key: "createdAt",
   },
   {
-    label:'Enter text',
-    type:'text',
-    key:'searchFilter'
-  }
+    label: "Enter text",
+    type: "text",
+    key: "searchFilter",
+  },
 ];

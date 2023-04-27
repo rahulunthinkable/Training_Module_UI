@@ -32,17 +32,17 @@ export class ApiService {
   }
 
   getUserList(params: any) {
-    let queryParams= new HttpParams();
-    queryParams =  queryParams.append("limit",params.limit);
-    queryParams =  queryParams.append("skip",params.skip);
-    if(params.userType){
-      queryParams =  queryParams.append("userType",params.userType);
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("limit", params.limit);
+    queryParams = queryParams.append("skip", params.skip);
+    if (params.userType) {
+      queryParams = queryParams.append("userType", params.userType);
     }
-    if(params.createdAt){
-      queryParams =  queryParams.append("createdAt",params.createdAt);
+    if (params.createdAt) {
+      queryParams = queryParams.append("createdAt", params.createdAt);
     }
-    if(params.searchFilter){
-      queryParams =  queryParams.append("keyword",params.searchFilter);
+    if (params.searchFilter) {
+      queryParams = queryParams.append("keyword", params.searchFilter);
     }
     return this.genericHttpService.httpGet(url.USER_LIST_URL, queryParams);
   }
