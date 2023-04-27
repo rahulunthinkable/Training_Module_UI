@@ -6,6 +6,7 @@ import { Subject, catchError, forkJoin, of, take, takeUntil } from "rxjs";
 import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
+import { actions } from "src/app/utils/util-constant";
 
 @Component({
   selector: "app-course",
@@ -36,7 +37,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       skip: this.skip,
     };
     this.getCourseAndCategoryObservables(this.payload);
-    this.getCoursesAndCategories("assign", this.req1, this.req2);
+    this.getCoursesAndCategories(actions.ASSIGN, this.req1, this.req2);
   }
 
   selectedFilters(event: any) {
@@ -49,7 +50,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     });
     this.payload.skip = 0;
     this.getCourseAndCategoryObservables(this.payload);
-    this.getCoursesAndCategories("assign", this.req1);
+    this.getCoursesAndCategories(actions.ASSIGN, this.req1);
   }
 
   loadMoreCourses(event: any) {
@@ -59,7 +60,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     if (scrollTop >= scrollHeight - offsetHeight) {
       this.payload.skip += 10;
       this.getCourseAndCategoryObservables(this.payload);
-      this.getCoursesAndCategories("append", this.req1);
+      this.getCoursesAndCategories(actions.APPEND, this.req1);
     }
   }
 
@@ -69,6 +70,7 @@ export class CourseComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe({
         next: (responseList: any) => {
+          this.spinnerService.closeSpinner();
           if (responseList[1]) {
             this.categories = responseList[1];
             this.filterOptions[0].options = this.categories.map(
@@ -78,7 +80,7 @@ export class CourseComponent implements OnInit, OnDestroy {
               }
             );
           }
-          if (action == "assign") {
+          if (action == actions.ASSIGN) {
             responseList[0] = responseList[0].map((data: any) => {
               this.categories.forEach((category: any) => {
                 if (category._id == data.categoryId) {
@@ -89,7 +91,7 @@ export class CourseComponent implements OnInit, OnDestroy {
             });
             this.courseData = responseList[0];
           }
-          if (action == "append") {
+          if (action == actions.APPEND) {
             if (responseList[0][0]) {
               responseList[0].forEach((course: any) => {
                 this.categories.forEach((category: any) => {
@@ -101,13 +103,12 @@ export class CourseComponent implements OnInit, OnDestroy {
               });
             }
           }
-          this.spinnerService.closeSpinner();
         },
         error: (error) => {
           this.spinnerService.closeSpinner();
           this.snackBarService.openSnackBar(
             ErrorMessages.SOMETHING_WENT_WRONG,
-            500,
+            1000,
             SnackClasses.ERROR
           );
         },
