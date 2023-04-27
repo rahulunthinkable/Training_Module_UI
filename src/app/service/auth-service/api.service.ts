@@ -3,7 +3,6 @@ import { GenericHttpService } from "../generic-http.service";
 import { url } from "../../utils/urls";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { HttpParams } from "@angular/common/http";
-import * as moment from "moment";
 @Injectable({
   providedIn: "root",
 })
@@ -40,7 +39,6 @@ export class ApiService {
       queryParams = queryParams.append("userType", params.userType);
     }
     if (params.createdAt) {
-      params.createdAt = moment(params.createdAt).format("YYYY-MM-DD");
       queryParams = queryParams.append("createdAt", params.createdAt);
     }
     if (params.searchFilter) {
