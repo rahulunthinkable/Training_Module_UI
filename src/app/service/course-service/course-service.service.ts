@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
-import { GenericHttpService } from '../generic-http.service';
-import { courseUrl, url } from 'src/app/utils/urls';
+import { Injectable } from "@angular/core";
+import { GenericHttpService } from "../generic-http.service";
+import { courseUrl, url } from "src/app/utils/urls";
+import { HttpParams } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CourseService {
+  constructor(private genericHttpService: GenericHttpService) {}
 
-  constructor(private genericHttpService:GenericHttpService) { }
-
-  getAllCourse(){
-    return this.genericHttpService.httpGet(courseUrl.COURSE_URL)
+  getAllCourse(params: any) {
+    let queryParams = new HttpParams();
+    queryParams = params;
+    return this.genericHttpService.httpGet(courseUrl.COURSE_URL, queryParams);
   }
-  getAllCategories(){
-    return this.genericHttpService.httpGet(courseUrl.CATEGORY_URL)
+  getAllCategories() {
+    return this.genericHttpService.httpGet(courseUrl.CATEGORY_URL);
   }
 }

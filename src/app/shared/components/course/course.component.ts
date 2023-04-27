@@ -15,6 +15,9 @@ import { SnackClasses } from "src/app/utils/snack-bar-classes";
 export class CourseComponent implements OnInit {
   courseData: any;
   categories: any;
+  payload: any = {};
+  limit = 10;
+  skip = 0;
   filterOptions: any = courseFilter;
   constructor(
     private courseApiService: CourseService,
@@ -23,7 +26,11 @@ export class CourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const req1 = this.courseApiService.getAllCourse().pipe(
+    this.payload = {
+      limit: this.limit,
+      skip: this.skip,
+    };
+    const req1 = this.courseApiService.getAllCourse(this.payload).pipe(
       take(1),
       catchError((err) => {
         return of(null);
@@ -42,10 +49,6 @@ export class CourseComponent implements OnInit {
       next: (responseList: any) => {
         this.courseData = responseList[0];
         this.spinnerService.closeSpinner();
-        this.courseData = this.courseData.map((course: any) => {
-          course.image = `data:image/png;base64,${course.image}`;
-          return course;
-        });
         this.categories = responseList[1];
         this.filterOptions[0].options = this.categories.map((category: any) => {
           category["viewValue"] = category.categoryName;
@@ -62,5 +65,52 @@ export class CourseComponent implements OnInit {
     });
   }
 
-  selectedFilters(event: Event) {}
+  selectedFilters(event: any) {
+    event.forEach((filter: any) => {
+      this.payload[Object.keys(filter)[0]] = filter[Object.keys(filter)[0]];
+    });
+    Object.keys(this.payload).forEach((param) => {
+      if (this.payload[param] == null) {
+        delete this.payload[param];
+      }
+    });
+    this.payload.skip = 0;
+    this.courseApiService.getAllCourse(this.payload).subscribe({
+      next: (value: any) => {
+        this.courseData = value;
+      },
+      error: (err) => {
+        this.snackBarService.openSnackBar(
+          ErrorMessages.SOMETHING_WENT_WRONG,
+          100,
+          SnackClasses.ERROR
+        );
+      },
+    });
+  }
+
+  loadMoreCourses(event: any) {
+    let scrollHeight=event.target.scrollHeight
+    let offsetHeight=event.target.offsetHeight
+    let scrollTop=event.target.scrollTop
+    
+    if(scrollTop>=scrollHeight-offsetHeight){      
+      this.payload.skip+=10
+      this.courseApiService.getAllCourse(this.payload).subscribe({
+        next: (value: any) => {
+          if(value[0]){
+            this.courseData.push(value);
+          }
+        },
+        error: (err) => {
+          this.snackBarService.openSnackBar(
+            ErrorMessages.SOMETHING_WENT_WRONG,
+            100,
+            SnackClasses.ERROR
+          );
+        },
+      });
+    }
+
+  }
 }
