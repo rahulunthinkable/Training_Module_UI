@@ -40,10 +40,10 @@
             </ng-container>
         </ng-container>
         <div class="icons">
-            <span *ngIf="!dropDown" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
-            <mat-icon *ngIf="!date" (click)="date=true">date_range</mat-icon>
-            <mat-icon *ngIf="!text" (click)="text=true">search</mat-icon>
-            <mat-icon (click)="resetFilters()">refresh</mat-icon>
+            <span *ngIf="!dropDown" title="Dropdown Filter" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
+            <mat-icon *ngIf="!date" title="Date Filter" (click)="date=true">date_range</mat-icon>
+            <mat-icon *ngIf="!text" title="Search" (click)="text=true">search</mat-icon>
+            <mat-icon (click)="resetFilters()" title="Refresh">refresh</mat-icon>
         </div>
     </mat-card>
 </div>
