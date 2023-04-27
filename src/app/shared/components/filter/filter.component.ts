@@ -104,12 +104,12 @@ export class FilterComponent {
     let filteredObject = this.filterObject.find(
       (object: any) => Object.keys(object)[0] == data.key
     );
-    if (data.key == "date") {
+    if (data.key == "createdAt") {
       filteredObject[Object.keys(filteredObject)[0]] =
-        this.picker.nativeElement.value;
+        new Date(filter.value).getTime() + 5.5 * 60 * 60 * 1000;
     } else {
       filteredObject[Object.keys(filteredObject)[0]] = filter._id;
-    }
+    }    
     this.emitFilters();
   }
   resetFilters() {
