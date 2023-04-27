@@ -59,7 +59,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
           this.dataSource = this.dataSource.map((data: any) => {
             return {
               ...data,
-              createdAt: moment(data.createdAt).format("MM/DD/YYYY"),
+              createdAt: moment(new Date(Number(data.createdAt))).format("MM/DD/YYYY"),
             };
           });
           this.totalLength = res.totalLength;

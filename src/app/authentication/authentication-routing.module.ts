@@ -4,6 +4,7 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { Login } from "./login/login.component";
 import { SignUPComponent } from "./sign-up/sign-up.component";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { ChangePasswordGuard } from "../guards/change-password/change-password.guard";
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path: "change-password/:id",
     component: ChangePasswordComponent,
+    canActivate: [ChangePasswordGuard],
   },
 ];
 

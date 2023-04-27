@@ -13,6 +13,7 @@ import {
 import { Observable } from "rxjs";
 import { LocalStorageToken } from "../../localstorage.token";
 import { InternalRoutes } from "../../utils/internal-routes";
+import { Storage_variables } from "src/app/utils/local-storage-variable";
 
 @Injectable({
   providedIn: "root",
@@ -30,7 +31,7 @@ export class LoginGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.localstorage.getItem("token")) {
+    if (this.localstorage.getItem(Storage_variables.token)) {
       return true;
     }
     this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
@@ -54,7 +55,7 @@ export class LoginGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.localstorage.getItem("token")) {
+    if (this.localstorage.getItem(Storage_variables.token)) {
       return true;
     }
     return false;

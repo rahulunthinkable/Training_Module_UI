@@ -1,49 +1,151 @@
-.login {
-  display: flex;
-  justify-content: center;
+
+@mixin mobile {
+  @media (max-width: 850px) {
+    @content;
+  }
+}
+
+@mixin padding {
+  @media (max-width: 650px) {
+    @content;
+  }
+}
+
+@mixin image-hide {
+  @media (max-width: 770px) {
+    @content;
+  }
+}
+
+@mixin totalheight {
+  @media (min-height: 500px) and (min-width: 770px) {
+    @content;
+  }
+}
+
+.main-content {
+  @include totalheight {
+    height: 100vh;
+    overflow-y: hidden;
+    margin-top: -50px;
+  }
+  margin: auto;
+  scroll-behavior: smooth;
+  padding-top: 20px;
   align-items: center;
-  flex-direction: column;
+  .block {
+    padding: 30px 10px;
+    border-radius: 10px;
 
-  .container {
-    .row {
+    .title {
+      font-weight: bold;
+      font-size: 1.8rem;
+      line-height: 2.3rem;
+      margin: 15px 0;
+      padding-left: 60px;
 
-      .col-md-6{
-        padding: 30px 50px; 
-        border-radius: 10px;
+      @include mobile {
+        padding-left: 10px;
       }
-      
-      .user-content {
-        padding: 20px 0;
-  
-        p{
-          color:  rgba(0, 0, 0, 0.43);
+    }
+
+    .disc {
+      padding-left: 60px;
+      line-height: 23px;
+      color: rgba(0, 0, 0, 0.432);
+      font-size: 16px;
+
+      @include mobile {
+        padding-left: 10px;
+      }
+    }
+
+    form {
+      padding: 10px;
+
+      .field {
+        margin: 10px;
+        padding: 0 30px;
+
+        @include mobile {
+          padding: 0 10px;
+        }
+
+        label {
+          margin: 8px;
+          font-size: 1rem;
+        }
+
+        .form-control {
+          margin: 5px 0;
+          border: 1px solid rgba(0, 0, 0, 0.493);
+          height: 50px;
+        }
+
+        span {
+          color: red;
+          margin: 5px 0 0 30px;
+        }
+
+        .red {
+          margin-top: 0px;
         }
       }
 
-      .input-element {
-        margin: 20px 0;
-      }
+      .pass {
+        .password {
+          width: 100%;
+        }
+        
+        input {
+          width: 90%;
 
-      .checkbox{
-        display: flex;
-        justify-content: space-between;
-      }
+          @include mobile {
+            width: 83%;
+          }
 
-      .not-allowed {
-        cursor: not-allowed;
-      }
+          display: inline-block;
+          border-radius: 5px 0 0 5px;
+          position: relative;
+        }
 
-      .user-link{
-        text-align: center;
-        margin-top: 13px;
-
-        a{
-          cursor: pointer;
+        input.form-control {
+          border-right: none;
         }
       }
 
-      .img-fluid{
-        height: 100%;
+      .checkbox {
+        padding: 0 30px;
+        a {
+          float: right;
+          margin-right: 10px;
+        }
+      }
+
+      .reg {
+        .not-allowed {
+          cursor: not-allowed;
+        }
+        div {
+          margin: 3px 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .block2 {
+    align-items: center;
+    text-align: center;
+    @include image-hide {
+      display: none;
+    }
+
+    div {
+      max-width: 370px;
+      margin: auto;
+      img {
+        width: 100%;
       }
     }
   }

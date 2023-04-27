@@ -11,6 +11,7 @@ import {
 } from "src/app/utils/back-end-error-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { LocalStorageToken } from "src/app/localstorage.token";
+import { Storage_variables } from "src/app/utils/local-storage-variable";
 
 @Component({
   selector: "app-forgot-password",
@@ -39,7 +40,7 @@ export class ForgotPasswordComponent {
       next: (resp) => {
         this.spinnerService.closeSpinner();
         this.localStorage.setItem("_id", resp._id);
-        let changeUrlId = this.localStorage.getItem("_id");
+        let changeUrlId = this.localStorage.getItem(Storage_variables._id);
         this.router.navigateByUrl(
           InternalRoutes.CHANGE_PASSWORD + "/" + changeUrlId
         );
