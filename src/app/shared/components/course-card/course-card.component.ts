@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class CourseCardComponent implements OnInit {
   @Input("data") courseData: any;
-  @Input("category") category: any;
   constructor() {}
 
   ngOnInit(): void {}

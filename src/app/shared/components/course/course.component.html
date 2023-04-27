@@ -2,9 +2,6 @@
 </app-filter>
 <div class="row w-100 d-flex main-content" (scroll)="loadMoreCourses($event)">
   <div class="col-md-3  col-sm-12" *ngFor="let item of courseData">
-    <ng-container *ngFor="let category of categories">
-      <app-course-card *ngIf="category._id===item.categoryId" [data]="item"
-        [category]="category.categoryName"></app-course-card>
-    </ng-container>
+    <app-course-card [data]="item"></app-course-card>
   </div>
 </div>
