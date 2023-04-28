@@ -12,6 +12,7 @@ import {
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { Storage_variables } from "src/app/utils/local-storage-variable";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-forgot-password",
@@ -29,7 +30,8 @@ export class ForgotPasswordComponent {
     private apiService: ApiService,
     private snackService: SnackService,
     private router: Router,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private translate: TranslateService
   ) {}
 
   hide = true;
@@ -51,7 +53,7 @@ export class ForgotPasswordComponent {
         if (errMsg == BackEndErrorMessages.NOT_A_MAIL) {
           errMsg = BackEndResponse.NOT_A_MAIL;
         }
-        this.snackService.openSnackBar(errMsg, 2000, SnackClasses.ERROR);
+        this.snackService.openSnackBar(this.translate.instant(errMsg), 2000, SnackClasses.ERROR);
       },
     });
   }

@@ -3,10 +3,10 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <div *ngFor="let column of displayedColumns">
                 <ng-container [matColumnDef]="column.label">
-                    <th mat-header-cell *matHeaderCellDef id="column.label" title="{{column.label}}"> {{column.label}}
+                    <th mat-header-cell *matHeaderCellDef id="column.label" title="{{column.label | translate}}"> {{column.label | translate}}
                     </th>
-                    <td mat-cell *matCellDef="let element" title="{{element[column.tablekey]}}">
-                        {{element[column.tablekey]}} </td>
+                    <td mat-cell *matCellDef="let element" title="{{element[column.tablekey] | translate}}">
+                        {{element[column.tablekey] | translate}} </td>
                 </ng-container>
             </div>
             <tr mat-header-row *matHeaderRowDef="columnNames"></tr>

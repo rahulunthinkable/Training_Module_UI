@@ -1,17 +1,17 @@
 <div class="main-content row container">
   <div class="block col-md-6 order-md-0 order-1 mat-elevation-z8">
     <div class="title">
-      <h1>Login For Learning new Technologies</h1>
+      <h1>{{"Login For Learning New Technologies"| translate}}</h1>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off" class="form">
       <div class="field">
         <mat-form-field class="w-100">
           <input matInput placeholder="Enter your email" type="text" formControlName="userEmail">
           <mat-error *ngIf="loginForm.controls['userEmail'].hasError('required') ">
-            *Email is <strong>Required</strong>
+            *{{"Email is"|translate}} <strong>{{"Required"|translate}}</strong>
           </mat-error>
           <mat-error *ngIf="loginForm.controls['userEmail'].hasError('email')">
-            *Not a <strong>Valid Email</strong>
+            *{{"Not a"|translate}} <strong>{{"Valid Email"|translate}}</strong>
           </mat-error>
         </mat-form-field>
       </div>
@@ -24,13 +24,13 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error *ngIf="loginForm.controls['password'].hasError('required') ">
-            *password is <strong>Required</strong>
+            *{{"password is" | translate}} <strong>{{"Required" |translate}}</strong>
           </mat-error>
         </mat-form-field>
       </div>
       <div class="checkbox">
-        <mat-checkbox>Remember Me</mat-checkbox>
-        <a routerLink="/session/forget-password" class="a-color">Forget Password</a>
+        <mat-checkbox>{{"Remember Me" | translate}}</mat-checkbox>
+        <a routerLink="/session/forget-password" class="a-color">{{"Forget Password" |translate}}</a>
       </div>
       <div class="field reg">
         <div [ngClass]="{'not-allowed' : !loginForm.valid}">
@@ -38,7 +38,8 @@
             [disabled]="!loginForm.valid">Login</button>
         </div>
         <div class="acc">
-          Create a new account <a routerLink="/session/sign-up" class="a-color">SignUp</a>
+          {{"Create a new account" | translate}} <a routerLink="/session/sign-up" class="a-color">{{"SignUp" |
+            translate}}</a>
         </div>
       </div>
     </form>

@@ -1,17 +1,17 @@
 <div class="filter-com">
     <mat-card class="mat-elevation-z0">
         <div class="header" title="{{headerName}}">
-            <h2>{{headerName}}</h2>
+            <h2>{{headerName | translate}}</h2>
         </div>
         <ng-container *ngFor="let data of filterData" >
             <ng-container [ngSwitch]="data.type">
                 <div class="user-type" *ngSwitchCase="'dropdown'">
                     <mat-form-field *ngIf="filterIsOpen[data.key+'IsOpen'] && dropDown" appearance="fill">
-                        <mat-label>{{data.label}}</mat-label>
+                        <mat-label>{{data.label | translate}}</mat-label>
                         <mat-select name="dropdown">
                             <mat-option (click)="filterSelect(filter,data)" *ngFor="let filter of data.options"
                                 [value]="filter._id">
-                                {{filter.viewValue}}
+                                {{filter.viewValue | translate}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -21,7 +21,7 @@
                 <div class="date" *ngSwitchCase="'date'">
                     <mat-form-field *ngIf="date && filterIsOpen[data.key+'IsOpen']" appearance="fill"
                         class="date-field">
-                        <mat-label>{{data.label}}</mat-label>
+                        <mat-label>{{data.label | translate}}</mat-label>
                         <input autocomplete="off" #dateInputValue (dateInput)="filterSelect(dateInputValue,data)"
                             matInput [matDatepicker]="picker1" placeholder="MM/DD/YYYY">
                         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -40,10 +40,10 @@
             </ng-container>
         </ng-container>
         <div class="icons">
-            <span *ngIf="!dropDown" title="Dropdown Filter" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
-            <mat-icon *ngIf="!date" title="Date Filter" (click)="date=true">date_range</mat-icon>
-            <mat-icon *ngIf="!text" title="Search" (click)="text=true">search</mat-icon>
-            <mat-icon (click)="resetFilters()" title="Refresh">refresh</mat-icon>
+            <span *ngIf="!dropDown" title="{{'Dropdown Filter' | translate}}" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
+            <mat-icon *ngIf="!date" title="{{'Date Filter'  | translate}}" (click)="date=true">date_range</mat-icon>
+            <mat-icon *ngIf="!text" title="{{'Search'  | translate}}" (click)="text=true">search</mat-icon>
+            <mat-icon (click)="resetFilters()" title="{{'Refresh'  | translate}}">refresh</mat-icon>
         </div>
     </mat-card>
 </div>

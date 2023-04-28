@@ -5,23 +5,33 @@ import { CourseCardComponent } from "./components/course-card/course-card.compon
 import { MaterialModule } from "../material/material.module";
 import { SideMenuComponent } from "./components/side-menu/side-menu.component";
 import { RouterModule } from "@angular/router";
-import { ButtonComponent } from "./components/button/button.component";
-import { HttpClientModule } from "@angular/common/http";
 import { SpinnerLoaderComponent } from "./components/spinner-loader/spinner-loader.component";
 import { FilterComponent } from "./components/filter/filter.component";
-import { DynamicTableComponent } from './components/dynamic-table/dynamic-table.component';
+import { DynamicTableComponent } from "./components/dynamic-table/dynamic-table.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
     CourseComponent,
     CourseCardComponent,
     SideMenuComponent,
-    ButtonComponent,
     SpinnerLoaderComponent,
     FilterComponent,
     DynamicTableComponent,
   ],
-  imports: [MaterialModule, CommonModule, RouterModule, HttpClientModule],
-  exports: [CourseComponent, SideMenuComponent, SpinnerLoaderComponent,FilterComponent, DynamicTableComponent],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+  ],
+  exports: [
+    CourseComponent,
+    SideMenuComponent,
+    SpinnerLoaderComponent,
+    FilterComponent,
+    DynamicTableComponent,
+    TranslateModule
+  ],
 })
 export class SharedModule {}

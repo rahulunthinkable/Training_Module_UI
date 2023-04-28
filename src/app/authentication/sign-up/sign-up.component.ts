@@ -12,6 +12,7 @@ import { InternalRoutes } from "src/app/utils/internal-routes";
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { ErrorMessages } from "src/app/utils/error-messages";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-sign-up",
@@ -40,14 +41,15 @@ export class SignUPComponent {
     private apiService: ApiService,
     private router: Router,
     private snackService: SnackService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private translate : TranslateService
   ) {}
 
   register() {
     this.selected = true;
     if (this.userNameNotNumber()) {
       this.snackService.openSnackBar(
-        ErrorMessages.USER_NAME_NUMBER,
+        this.translate.instant(ErrorMessages.USER_NAME_NUMBER),
         1000,
         SnackClasses.ERROR
       );
@@ -65,7 +67,7 @@ export class SignUPComponent {
             this.afterSignup = SuccessMessages.SIGNUP_SUCCESS;
             this.showLabel = true;
             this.snackService.openSnackBar(
-              this.afterSignup,
+              this.translate.instant(this.afterSignup),
               1000,
               SnackClasses.SUCCESS
             );
@@ -80,7 +82,7 @@ export class SignUPComponent {
               this.afterSignup = BackEndResponse.NOT_A_MAIL;
             }
             this.snackService.openSnackBar(
-              this.afterSignup,
+              this.translate.instant(this.afterSignup),
               2000,
               SnackClasses.ERROR
             );

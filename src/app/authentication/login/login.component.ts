@@ -13,6 +13,7 @@ import { SuccessMessages } from "src/app/utils/success-messages";
 import { InternalRoutes } from "src/app/utils/internal-routes";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-login-form",
@@ -35,7 +36,8 @@ export class Login {
     private apiService: ApiService,
     private router: Router,
     private snackService: SnackService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private translateService: TranslateService
   ) {}
 
   hide = true;
@@ -48,7 +50,7 @@ export class Login {
           this.afterLogin = SuccessMessages.LOGIN_SUCCESS;
           this.showLabel = true;
           this.snackService.openSnackBar(
-            this.afterLogin,
+            this.translateService.instant(this.afterLogin),
             1000,
             SnackClasses.SUCCESS
           );
@@ -64,7 +66,7 @@ export class Login {
             this.afterLogin = BackEndResponse.NOT_A_MAIL;
           }
           this.snackService.openSnackBar(
-            this.afterLogin,
+            this.translateService.instant(this.afterLogin),
             2000,
             SnackClasses.ERROR
           );

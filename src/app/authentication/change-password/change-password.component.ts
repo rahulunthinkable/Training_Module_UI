@@ -13,6 +13,7 @@ import { InternalRoutes } from "src/app/utils/internal-routes";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { Storage_variables } from "src/app/utils/local-storage-variable";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-change-password",
@@ -38,7 +39,8 @@ export class ChangePasswordComponent {
     private apiService: ApiService,
     private router: Router,
     private snackService: SnackService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private translateService: TranslateService
   ) {}
 
   changePassword() {
@@ -48,7 +50,7 @@ export class ChangePasswordComponent {
         next: (resp) => {
           this.afterSignup = SuccessMessages.FORGET_SUCCESS;
           this.snackService.openSnackBar(
-            this.afterSignup,
+            this.translateService.instant(this.afterSignup),
             1000,
             SnackClasses.SUCCESS
           );
@@ -63,7 +65,7 @@ export class ChangePasswordComponent {
             this.afterSignup = BackEndResponse.SERVER_ERROR;
           }
           this.snackService.openSnackBar(
-            this.afterSignup,
+            this.translateService.instant(this.afterSignup),
             2000,
             SnackClasses.ERROR
           );

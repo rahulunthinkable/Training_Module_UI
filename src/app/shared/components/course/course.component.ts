@@ -7,6 +7,7 @@ import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { actions } from "src/app/utils/util-constant";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-course",
@@ -28,7 +29,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   constructor(
     private courseApiService: CourseService,
     private spinnerService: SpinnerService,
-    private snackBarService: SnackService
+    private snackBarService: SnackService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -107,7 +109,7 @@ export class CourseComponent implements OnInit, OnDestroy {
         error: (error) => {
           this.spinnerService.closeSpinner();
           this.snackBarService.openSnackBar(
-            ErrorMessages.SOMETHING_WENT_WRONG,
+            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
             1000,
             SnackClasses.ERROR
           );
