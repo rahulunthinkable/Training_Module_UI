@@ -1,17 +1,18 @@
 <div class="main-content row container">
 	<div class="block col-md-6 order-md-0 order-1 mat-elevation-z8">
 		<div class="title">
-			<h1> Sign up to Website</h1>
+			<h1>{{"Sign up to Website" | translate}}</h1>
 		</div>
 		<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off" class="form">
 			<div class="field">
 				<mat-form-field class="full-width">
-					<input (keyup)="userNameNotNumber()" matInput type="text" placeholder="Enter your name" formControlName="userName">
+					<input (keyup)="userNameNotNumber()" matInput type="text" placeholder="Enter your name"
+						formControlName="userName">
 					<mat-error *ngIf="registerForm.controls['userName'].hasError('required')">
-						*Name is <strong>Required</strong>
+						*{{"Name is" | translate}} <strong>{{"Required" | translate}}</strong>
 					</mat-error>
 					<mat-error *ngIf="registerForm.controls['userName'].hasError('minlength')">
-						*atleast <strong>2 characters</strong>
+						*{{"atleast" | translate}} <strong>2 {{"characters" | translate}}</strong>
 					</mat-error>
 
 				</mat-form-field>
@@ -20,10 +21,10 @@
 				<mat-form-field class="full-width">
 					<input matInput placeholder="Enter your email" type="text" formControlName="userEmail">
 					<mat-error *ngIf="registerForm.controls['userEmail'].hasError('required') ">
-						*Email is <strong>Required</strong>
+						*{{"Email is" | translate}} <strong>{{"Required" | translate}}</strong>
 					</mat-error>
 					<mat-error *ngIf="registerForm.controls['userEmail'].hasError('email')">
-						*Not a <strong>Valid Email</strong>
+						*{{"Not a" | translate}} <strong>{{"Valid Email" | translate}}</strong>
 					</mat-error>
 				</mat-form-field>
 			</div>
@@ -37,10 +38,10 @@
 						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</button>
 					<mat-error *ngIf="registerForm.controls['password'].hasError('required') ">
-						*password is <strong>Required</strong>
+						*{{"password is" | translate}} <strong>{{"Required" | translate}}</strong>
 					</mat-error>
 					<mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
-						*atleast <strong>6 characters</strong>
+						*{{"atleast" | translate}} <strong>6 {{"characters"| translate}}</strong>
 					</mat-error>
 				</mat-form-field>
 
@@ -48,18 +49,20 @@
 					<input (keyup)="matchPass()" #confirm matInput placeholder=" Confirm password" type="text"
 						formControlName="confirm_password">
 					<mat-error *ngIf="registerForm.controls['confirm_password'].hasError('required')">
-						Please fill this field
+						{{"Please fill this field" | translate}}
 					</mat-error>
 				</mat-form-field>
-				<h4 *ngIf="!passMatch && registerForm.controls['confirm_password'].dirty">Password Not Matched</h4>
+				<h4 *ngIf="!passMatch && registerForm.controls['confirm_password'].dirty">{{"Password Not Matched" |
+					translate}}</h4>
 			</div>
 			<div class="field reg">
 				<div [ngClass]="{'not-allowed' : !registerForm.valid} || !passMatch">
 					<button class="w-100 rounded px-3 py-2" mat-raised-button color="primary"
-						[disabled]="!registerForm.valid || !passMatch">Register</button>
+						[disabled]="!registerForm.valid || !passMatch">{{"Register"| translate}}</button>
 				</div>
 				<div class="acc">
-					Have an account? <a routerLink="/session" class="a-color">Login</a>
+					{{"Have an account?" | translate}} <a routerLink="/session" class="a-color">{{"Login" |
+						translate}}</a>
 				</div>
 			</div>
 		</form>
