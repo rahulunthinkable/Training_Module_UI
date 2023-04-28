@@ -5,11 +5,13 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserTableComponent } from './user-table/user-table.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateCourseComponent } from './create-course/create-course.component';
 
 
 @NgModule({
   declarations: [
     UserTableComponent,
+    CreateCourseComponent,
   ],
   imports: [
     CommonModule,

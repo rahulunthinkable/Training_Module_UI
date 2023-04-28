@@ -1,0 +1,106 @@
+<div class="create-course-container">
+    <div class="header">
+        <h1>Create Your Course </h1> <mat-icon>school</mat-icon>
+    </div>
+    <div class="stepper mat-elevation-z8" [ngClass]="{'vertical-stepper': isVerticalStepper}">
+        <mat-stepper [orientation]="(stepperOrientation | async)!" [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="courseNameGroup">
+                <form [formGroup]="courseNameGroup" class="step-form">
+                    <ng-template matStepLabel>Enter Course Name</ng-template>
+                    <div class="container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Course Name</mat-label>
+                            <input matInput placeholder="Ex. Python , Machine Learning etc."
+                                formControlName="courseName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="button-div" *ngIf="!isVerticalStepper">
+                        <button mat-icon-button matStepperNext color="primary" title="Next">
+                            <mat-icon>keyboard_arrow_right</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="categoryGroup">
+                <form [formGroup]="categoryGroup" class="step-form">
+                    <ng-template matStepLabel>Choose Category</ng-template>
+                    <button mat-icon-button matStepperPrevious color="primary" title="Previous"
+                        *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <div class="container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="category">
+                                <mat-option *ngFor="let item of categoryList"
+                                    value="{{item?._id}}">{{item?.categoryName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <button mat-icon-button matStepperNext color="primary" title="Next" *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </form>
+            </mat-step>
+            <mat-step >
+                <form  class="step-form">
+                    <ng-template matStepLabel>Add Course Image</ng-template>
+                    <button mat-icon-button matStepperPrevious color="primary" title="Previous"
+                        *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <div class="container" style="align-items: center;">
+                        <div class="button-wrap">
+                            <label class="button" for="img">Upload File</label>
+                            <input class="imageInput" type="file" id="img" name="img"
+                                accept="image/*" (change)="fileChange($event)">
+                        </div>
+                        <div>
+                            <label class="filename" id="filename"></label>
+                        </div>
+                    </div>
+                    <button mat-icon-button matStepperNext color="primary" title="Next" *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="descriptionGroup">
+                <form [formGroup]="descriptionGroup" class="step-form">
+                    <ng-template matStepLabel>Description</ng-template>
+                    <button mat-icon-button matStepperPrevious color="primary" title="Previous"
+                        *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <div class="container">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Course Description (optional)</mat-label>
+                            <input matInput formControlName="description">
+                        </mat-form-field>
+                    </div>
+                    <button mat-icon-button matStepperNext color="primary" title="Next" *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </button>
+                </form>
+            </mat-step>
+            <mat-step>
+                <div class="step-form">
+                    <ng-template matStepLabel>Completed</ng-template>
+                    <button mat-icon-button matStepperPrevious color="primary" title="Previous"
+                        *ngIf="!isVerticalStepper">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <div class="container">
+                        <div>
+                            <button mat-raised-button color="primary" class="complete-btn" (click)="submitCourseForm()">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                    <button mat-icon-button color="primary" (click)="stepper.reset(); resetFileName()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

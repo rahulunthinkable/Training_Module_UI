@@ -17,4 +17,7 @@ export class CourseService {
   getAllCategories() {
     return this.genericHttpService.httpGet(courseUrl.CATEGORY_URL);
   }
+  createCourse(payload: any) {
+    return this.genericHttpService.httpPost(courseUrl.COURSE_URL, payload);
+  }
 }

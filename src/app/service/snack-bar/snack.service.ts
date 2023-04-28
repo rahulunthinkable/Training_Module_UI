@@ -11,7 +11,7 @@ export class SnackService {
   ) { }
 
   openSnackBar(message: string, time: any, snackType : any) {
-    this._snackBar.open(message, 'Close', {
+    this._snackBar.open(message, 'X', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       panelClass: snackType,

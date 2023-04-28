@@ -20,6 +20,7 @@ export class FilterComponent {
   date = false;
 
   @Input() filterData: any;
+  @Input() headerName: any;
   @Output() applyFilters = new EventEmitter();
 
   @ViewChild("dateInputValue") picker!: ElementRef;
