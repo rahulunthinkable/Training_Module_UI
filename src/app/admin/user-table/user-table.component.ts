@@ -7,6 +7,7 @@ import { UserlistColdefs } from "./userlist-coldefs";
 import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import * as moment from "moment";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-user-table",
@@ -28,7 +29,8 @@ export class UserTableComponent implements OnInit, OnDestroy {
   constructor(
     private apiService: ApiService,
     private snackbarService: SnackService,
-    private loader: SpinnerService
+    private loader: SpinnerService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
@@ -69,7 +71,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
         (err) => {
           this.loader.closeSpinner();
           this.snackbarService.openSnackBar(
-            ErrorMessages.SOMETHING_WENT_WRONG,
+            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
             1000,
             SnackClasses.ERROR
           );

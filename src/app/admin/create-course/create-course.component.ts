@@ -9,6 +9,7 @@ import { UserDetailService } from "src/app/service/User-detail-service/user-deta
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { ErrorMessages } from "src/app/utils/error-messages";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-create-course",
@@ -35,7 +36,8 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     private courseService: CourseService,
     private breakpointObserver: BreakpointObserver,
     private loggedInUser: UserDetailService,
-    private snackbarService: SnackService
+    private snackbarService: SnackService,
+    private translateService: TranslateService
   ) {
     this.stepperOrientation = this.breakpointObserver
       .observe("(min-width: 800px)")
@@ -91,7 +93,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
   submitCourseForm() {
     if (this.validateCourseName()) {
       this.snackbarService.openSnackBar(
-        ErrorMessages.COURSE_NAME_ERROR,
+        this.translateService.instant(ErrorMessages.COURSE_NAME_ERROR),
         1000,
         SnackClasses.ERROR)
       return;
@@ -119,14 +121,14 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           this.snackbarService.openSnackBar(
-            SuccessMessages.CREATE_COURSE_SUCCESS,
+            this.translateService.instant(SuccessMessages.CREATE_COURSE_SUCCESS),
             1000,
             SnackClasses.SUCCESS
           );
         },
         (err) => {
           this.snackbarService.openSnackBar(
-            ErrorMessages.SOMETHING_WENT_WRONG,
+            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
             1000,
             SnackClasses.ERROR
           );
@@ -145,7 +147,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.snackbarService.openSnackBar(
-            ErrorMessages.SOMETHING_WENT_WRONG,
+            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
             1000,
             SnackClasses.ERROR
           );

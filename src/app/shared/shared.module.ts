@@ -5,7 +5,6 @@ import { CourseCardComponent } from "./components/course-card/course-card.compon
 import { MaterialModule } from "../material/material.module";
 import { SideMenuComponent } from "./components/side-menu/side-menu.component";
 import { RouterModule } from "@angular/router";
-import { ButtonComponent } from "./components/button/button.component";
 import { SpinnerLoaderComponent } from "./components/spinner-loader/spinner-loader.component";
 import { FilterComponent } from "./components/filter/filter.component";
 import { DynamicTableComponent } from "./components/dynamic-table/dynamic-table.component";
@@ -16,7 +15,6 @@ import { TranslateModule } from "@ngx-translate/core";
     CourseComponent,
     CourseCardComponent,
     SideMenuComponent,
-    ButtonComponent,
     SpinnerLoaderComponent,
     FilterComponent,
     DynamicTableComponent,
