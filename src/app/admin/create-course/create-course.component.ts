@@ -81,7 +81,21 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     ele.innerText = "";
   }
 
+  validateCourseName() {
+    if (this.courseNameGroup && !isNaN(Number(this.courseNameGroup.value.courseName))) {
+      return true;
+    }
+    return false;
+  }
+
   submitCourseForm() {
+    if (this.validateCourseName()) {
+      this.snackbarService.openSnackBar(
+        ErrorMessages.COURSE_NAME_ERROR,
+        1000,
+        SnackClasses.ERROR)
+      return;
+    }
     this.courseFormData.set(
       "courseName",
       this.courseNameGroup.value.courseName

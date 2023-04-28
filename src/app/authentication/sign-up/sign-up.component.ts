@@ -11,6 +11,7 @@ import {
 import { InternalRoutes } from "src/app/utils/internal-routes";
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
+import { ErrorMessages } from "src/app/utils/error-messages";
 
 @Component({
   selector: "app-sign-up",
@@ -46,9 +47,9 @@ export class SignUPComponent {
     this.selected = true;
     if (this.userNameNotNumber()) {
       this.snackService.openSnackBar(
-        SuccessMessages.USER_NAME_NUMBER,
-        2500,
-        SnackClasses.HALF_SUCCESS
+        ErrorMessages.USER_NAME_NUMBER,
+        1000,
+        SnackClasses.ERROR
       );
       return;
     }
