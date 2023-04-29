@@ -7,9 +7,13 @@
         <mat-card-subtitle>{{courseData.creatorName | translate}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p class="title">
+        <p class="title" *ngIf="courseData.categoryName.length<20" [title]="courseData.categoryName">
           <span class="category">{{"Category" | translate}}:</span>
           {{courseData.categoryName | translate}}
+        </p>
+        <p class="title" *ngIf="courseData.categoryName.length>20" [title]="courseData.categoryName">
+          <span class="category">Category:</span>
+          {{courseData.categoryName | slice:0:20}}....
         </p>
       </mat-card-content>
     </mat-card>

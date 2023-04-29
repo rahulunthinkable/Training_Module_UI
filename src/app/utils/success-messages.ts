@@ -3,4 +3,5 @@ export const SuccessMessages = {
     SIGNUP_SUCCESS : 'Registraion is successful',
     FORGET_SUCCESS : 'Your Password is changed Successfully',
     CREATE_COURSE_SUCCESS : 'Course is Successfully Created',
+    USER_UPDATED_SUCCESS:'User Details Updated Successfully'
 }

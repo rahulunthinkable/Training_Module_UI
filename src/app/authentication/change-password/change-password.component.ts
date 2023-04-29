@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { ApiService } from "src/app/service/auth-service/api.service";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
@@ -25,6 +25,7 @@ export class ChangePasswordComponent {
   afterSignup = "";
   spinner = false;
   passMatch = false;
+  userId:any;
 
   @ViewChild("confirm") confirm!: ElementRef;
 
@@ -40,13 +41,24 @@ export class ChangePasswordComponent {
     private router: Router,
     private snackService: SnackService,
     private spinnerService: SpinnerService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private route:ActivatedRoute
   ) {}
+
+  ngOnInit(){
+    this.route.params.subscribe((param:any)=>{
+      if(param.id){
+        this.userId=param.id
+      }
+      
+    })
+    
+  }
 
   changePassword() {
     if (this.changeForm.valid) {
-      this.spinnerService.loadSpinner();
-      this.apiService.change_password(this.changeForm.value).subscribe({
+      this.spinnerService.loadSpinner();      
+      this.apiService.change_password(this.changeForm.value,this.userId).subscribe({
         next: (resp) => {
           this.afterSignup = SuccessMessages.FORGET_SUCCESS;
           this.snackService.openSnackBar(
