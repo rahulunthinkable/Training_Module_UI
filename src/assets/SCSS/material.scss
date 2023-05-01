@@ -130,3 +130,8 @@
   border-color: #f5c6cb;
   --mat-mdc-snack-bar-button-color: darkred;
 }
+
+
+.mat-mdc-row:hover , .mat-mdc-header-row:hover {
+  background-color: #dae0ef !important;
+}

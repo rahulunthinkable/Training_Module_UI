@@ -5,13 +5,13 @@ export class UserlistColdefs {
     this.Columndefs = [
       { tablekey: "userName", label: "Name" },
       { tablekey: "userEmail", label: "Email" },
-      { tablekey: "userType", label: "User Type" },
+      { tablekey: "userType", label: "Role" },
       { tablekey: "createdAt", label: "Date Of Joining" },
-      { tablekey: "isActive", label: "isActive" },
+      { tablekey: "isActive", label: "Status" },
     ];
     this.filterOptions=[
       {
-        label: "User Type",
+        label: "Role",
         type: "dropdown",
         options: [
           {
