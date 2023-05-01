@@ -89,5 +89,7 @@
   "Programming":"Programming",
   "Data Structure and Algorithm":"Data Structure and Algorithm",
   "Web Development":"Web Development",
-  "Machine Learning and AI":"Machine Learning and AI"
+  "Machine Learning and AI":"Machine Learning and AI",
+  "Active":"Active",
+  "InActive":"InActive"
 }

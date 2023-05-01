@@ -61,7 +61,8 @@ export class UserTableComponent implements OnInit, OnDestroy {
           this.dataSource = this.dataSource.map((data: any) => {
             return {
               ...data,
-              createdAt: moment(new Date(Number(data.createdAt))).format(
+              isActive: data?.isActive? 'Active':'InActive',
+              createdAt: moment(new Date(Number(data?.createdAt))).format(
                 "MM/DD/YYYY"
               ),
             };

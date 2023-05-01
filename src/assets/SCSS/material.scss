@@ -128,6 +128,11 @@
   --mat-mdc-snack-bar-button-color: darkred;
 }
 
+
+.mat-mdc-row:hover , .mat-mdc-header-row:hover {
+  background-color: #dae0ef !important;
+}
+
 .mat-mdc-tab-header{
   width: 40%;
 }
