@@ -1,0 +1,55 @@
+.main-content{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .mat-mdc-card{
+        box-shadow: none !important;
+    }
+
+    .profile-content{
+        padding: 10px;
+        h2{
+            color: rgb(71, 59, 59);
+        }
+        h3{
+            font-weight: bold;
+            color: #979797 !important;
+        }
+
+        .verified-button{
+            flex-direction: row-reverse;
+        }
+        h4{
+            font-size: large;
+            font-weight: bold;
+            span{
+                font-weight: lighter;
+            }
+        }
+        .custom-button{
+            .mdc-button{
+                padding: 0px !important;
+                color: rgb(85, 83, 83);
+            }
+            .revert-button{
+                display: flex;
+                flex-direction: row-reverse;
+                mat-icon{
+                    color: green;
+                }
+            }
+        }
+    }
+    .image-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .mat-mdc-card{
+            width: fit-content;
+            height: fit-content;
+        }
+    }
+
+}

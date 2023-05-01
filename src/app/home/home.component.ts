@@ -48,6 +48,12 @@ export class HomeComponent {
     }
   }
 
+  goToProfile(){
+    this.spinnerService.loadSpinner();
+    this.router.navigateByUrl(InternalRoutes.PROFILE);
+    this.spinnerService.closeSpinner();
+  }
+
   logout() {
     this.spinnerService.loadSpinner();
     this.localstorage.setItem('token', '');

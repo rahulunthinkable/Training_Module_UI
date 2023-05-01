@@ -41,8 +41,7 @@ export class ForgotPasswordComponent {
     this.apiService.forget(this.forgetForm.value).subscribe({
       next: (resp) => {
         this.spinnerService.closeSpinner();
-        this.localStorage.setItem("_id", resp._id);
-        let changeUrlId = this.localStorage.getItem(Storage_variables._id);
+        let changeUrlId = resp._id
         this.router.navigateByUrl(
           InternalRoutes.CHANGE_PASSWORD + "/" + changeUrlId
         );

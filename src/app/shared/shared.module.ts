@@ -8,6 +8,12 @@ import { RouterModule } from "@angular/router";
 import { SpinnerLoaderComponent } from "./components/spinner-loader/spinner-loader.component";
 import { FilterComponent } from "./components/filter/filter.component";
 import { DynamicTableComponent } from "./components/dynamic-table/dynamic-table.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile/user-profile.component";
+import { EditProfileComponent } from "./components/user-profile/edit-profile/edit-profile.component";
+import { ViewProfileComponent } from "./components/user-profile/view-profile/view-profile.component";
+import { ProfileComponent } from "./components/user-profile/view-profile/profile/profile.component";
+import { ChangePasswordComponent } from "./components/user-profile/change-password/change-password.component";
+import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
@@ -18,20 +24,34 @@ import { TranslateModule } from "@ngx-translate/core";
     SpinnerLoaderComponent,
     FilterComponent,
     DynamicTableComponent,
+    UserProfileComponent,
+    EditProfileComponent,
+    ViewProfileComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
   ],
-  imports: [
-    MaterialModule,
-    CommonModule,
-    RouterModule,
-    TranslateModule,
-  ],
+
   exports: [
     CourseComponent,
     SideMenuComponent,
     SpinnerLoaderComponent,
     FilterComponent,
     DynamicTableComponent,
+    UserProfileComponent,
+    EditProfileComponent,
+    ViewProfileComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
     TranslateModule
+
   ],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    TranslateModule,
+  ],
+
 })
 export class SharedModule {}

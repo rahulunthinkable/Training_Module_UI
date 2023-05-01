@@ -46,7 +46,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
       limit: this.limit,
       skip: this.skip,
       userType: this.filterParams?.userType ? this.filterParams.userType : "",
-      createdAt: this.filterParams?.date ? this.filterParams.date : "",
+      createdAt: this.filterParams?.createdAt ? this.filterParams.createdAt : "",
       searchFilter: this.filterParams?.searchFilter
         ? this.filterParams?.searchFilter
         : "",

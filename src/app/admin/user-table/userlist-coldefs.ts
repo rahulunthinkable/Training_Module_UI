@@ -32,7 +32,7 @@ export class UserlistColdefs {
       {
         label: "Date Of Joining",
         type: "date",
-        key: "date",
+        key: "createdAt",
       },
       {
         label:'Search',
