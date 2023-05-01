@@ -38,10 +38,6 @@ mat-card {
         mat-icon {
             cursor: pointer;
         }
-
-        .dateCross{
-            margin-bottom: 5px !important;
-        }
     }
 
     .search {
@@ -66,12 +62,11 @@ mat-card {
     justify-content: space-between;
     margin-right: 20px;
     margin-top: 27px;
+    mat-icon{
+        cursor: pointer;
+    }
 }
  mat-icon{
     font-size: 26px;
     padding-right: 35px !important;
-}
-.custom-icon{
-    padding-right: 10px !important;
-    font-size: 26px;
 }
