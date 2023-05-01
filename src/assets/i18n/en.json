@@ -85,5 +85,9 @@
   "Cancel":"Cancel",
   "Notification Preference":"Notification Preference",
   "Notifications":"Notifications",
-  "Saved Courses":"Saved Courses"
+  "Saved Courses":"Saved Courses",
+  "Programming":"Programming",
+  "Data Structure and Algorithm":"Data Structure and Algorithm",
+  "Web Development":"Web Development",
+  "Machine Learning and AI":"Machine Learning and AI"
 }
