@@ -40,7 +40,7 @@
             </ng-container>
         </ng-container>
         <div class="icons">
-            <span *ngIf="!dropDown" title="{{'Dropdown Filter' | translate}}" (click)="dropDown = true" class="material-icons custom-icon">filter_alt</span>
+            <mat-icon *ngIf="!dropDown" title="{{'Dropdown Filter' | translate}}" (click)="dropDown = true">filter_alt</mat-icon>
             <mat-icon *ngIf="!date" title="{{'Date Filter'  | translate}}" (click)="date=true">date_range</mat-icon>
             <mat-icon *ngIf="!text" title="{{'Search'  | translate}}" (click)="text=true">search</mat-icon>
             <mat-icon (click)="resetFilters()" title="{{'Refresh'  | translate}}">refresh</mat-icon>

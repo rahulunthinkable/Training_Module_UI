@@ -31,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDialogModule} from '@angular/material/dialog'
 
 
 const mat_modules = [
@@ -64,7 +65,8 @@ const mat_modules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatNativeDateModule,
-  MatStepperModule
+  MatStepperModule,
+  MatDialogModule
 ]
 
 

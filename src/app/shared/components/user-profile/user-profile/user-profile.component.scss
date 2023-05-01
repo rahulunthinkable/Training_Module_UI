@@ -1,0 +1,27 @@
+.main-content{
+    background: #f4eaea;
+    height: 87vh;
+    margin-top: 8px;
+    padding: 15px;
+    padding-top: 20px;
+    overflow: hidden;
+
+    .card-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px;
+        h3{
+            margin: auto;
+            font-weight: bold;
+            color: #979797;
+        }
+        button{
+            border-color: #2564f8;
+            background-color: #2584f8;
+            color: #fff;
+        }
+    }
+
+
+}

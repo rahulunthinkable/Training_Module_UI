@@ -13,8 +13,6 @@ export class ApiService {
     @Inject(LocalStorageToken) private localStorage: Storage
   ) {}
 
-  userId = this.localStorage.getItem(Storage_variables._id);
-
   login(payload: any) {
     return this.genericHttpService.httpPost(url.LOGIN_URL, payload);
   }
@@ -27,8 +25,8 @@ export class ApiService {
     return this.genericHttpService.httpPost(url.FORGET_URL, payload);
   }
 
-  change_password(payload: any) {
-    let changeUrl = url.CHANGE_URL + "/" + this.userId;
+  change_password(payload: any,userId:any) {
+    let changeUrl = url.CHANGE_URL + "/" + userId;
     return this.genericHttpService.httpPatch(changeUrl, payload);
   }
 
@@ -46,5 +44,10 @@ export class ApiService {
       queryParams = queryParams.append("keyword", params.searchFilter);
     }
     return this.genericHttpService.httpGet(url.USER_LIST_URL, queryParams);
+  }
+
+  updateUser(payload:any,userId:any){
+    let updateUserUrl=url.USER_LIST_URL+'/'+userId;
+    return this.genericHttpService.httpPatch(updateUserUrl,payload)
   }
 }
