@@ -1,7 +1,7 @@
 <div class="w-100 main-content">
     <mat-card class="card-container">
         <mat-card-header>
-            <h3> {{userName+"'s Profile" | translate}}</h3>
+            <h3> {{userName | translate}}</h3>
         </mat-card-header>
         <mat-card-actions *ngIf="loggedUserMode">
             <a routerLink="/home/admin//profile/edit-profile" *ngIf="!editProfile" (click)="editProfile=!editProfile"

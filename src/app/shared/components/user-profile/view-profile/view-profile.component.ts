@@ -36,14 +36,14 @@ export class ViewProfileComponent implements OnInit {
     });
     if (!this.adminViewMode) {
       this.userDetails = this.userDetaisService.getUserDetails();
-      this.userDetail.userName.next(this.userDetails.name);
+      this.userDetail.userName.next('My Profile');
     } else {
       this.loaderService.loadSpinner();
       this.userDetaisService.getUserDetailApi(this.userId).subscribe({
         next: (value: any) => {
           this.loaderService.closeSpinner();
           this.userDetails = value;
-          this.userDetail.userName.next(this.userDetails.name);
+          this.userDetail.userName.next(this.userDetails.name+"'s Profile");
         },
         error: (err) => {
           this.loaderService.closeSpinner();
