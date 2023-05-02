@@ -13,7 +13,6 @@ import { InternalRoutes } from "./utils/internal-routes";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewChecked {
   title = "LearningResources";
@@ -30,15 +29,6 @@ export class AppComponent implements AfterViewChecked {
   ) {
   }
   
-  ngAfterViewChecked(): void {
-    this.cdref.detectChanges();
-    this.router.events.subscribe( (val) => {
-      if(this.localstorage.getItem(Storage_variables.token) && !this.location.path().includes(InternalRoutes.LOGIN_PAGE)) {
-        this.localstorage.setItem(Storage_variables.last_route,this.location.path());
-      }
-    })
-  }
-
   ngOnInit() {
     this.subject = this.spinnerService.spinnerSubject;
     this.subject.subscribe((data: any) => {
@@ -48,5 +38,13 @@ export class AppComponent implements AfterViewChecked {
         this.spinnerArr.pop();
       }
     });
+  }
+  ngAfterViewChecked(): void {
+    this.cdref.detectChanges();    
+    this.router.events.subscribe( (val) => {
+      if(this.localstorage.getItem(Storage_variables.token) && !this.location.path().includes(InternalRoutes.LOGIN_PAGE) && this.location.path()!='') {
+        this.localstorage.setItem(Storage_variables.last_route,this.location.path());
+      }
+    })
   }
 }

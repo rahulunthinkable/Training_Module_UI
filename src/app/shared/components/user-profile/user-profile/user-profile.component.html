@@ -1,11 +1,12 @@
 <div class="w-100 main-content">
     <mat-card class="card-container">
         <mat-card-header>
-            <h3> {{"My Profile" | translate}}</h3>
+            <h3> {{userName+"'s Profile" | translate}}</h3>
         </mat-card-header>
-        <mat-card-actions>
+        <mat-card-actions *ngIf="loggedUserMode">
             <a routerLink="/home/admin//profile/edit-profile" *ngIf="!editProfile" (click)="editProfile=!editProfile"
-                class="a-color"> <button mat-button><mat-icon>create</mat-icon>{{"Edit Profile" | translate}}</button></a>
+                class="a-color"> <button mat-button><mat-icon>create</mat-icon>{{"Edit Profile" |
+                    translate}}</button></a>
             <a routerLink="/home/admin//profile" *ngIf="editProfile" (click)="editProfile=!editProfile" class="a-color">
                 <button mat-button><mat-icon>visibility</mat-icon>{{"View Profile" | translate}}</button></a>
         </mat-card-actions>
