@@ -1,8 +1,10 @@
 <div class="tab-container rounded">
     <mat-tab-group class="tab-group">
         <mat-tab [label]="'Profile' | translate">
-            <app-profile [user]="userDetails"></app-profile>
+            <app-profile *ngIf="userDetails" [user]="userDetails" [viewMode]="adminViewMode"></app-profile>
         </mat-tab>
-        <mat-tab [label]="'Manage Notifications' | translate">Content2</mat-tab>
+        <mat-tab *ngIf="!adminViewMode" [label]="'Manage Notifications' | translate">Content2</mat-tab>
+        <mat-tab *ngIf="adminViewMode && userDetails.role!=roles.TRAINEE" [label]="'Created Courses' | translate">Content3</mat-tab>
+        <mat-tab *ngIf="adminViewMode" [label]="'Enrolled Courses' | translate">Content4</mat-tab>
     </mat-tab-group>
 </div>

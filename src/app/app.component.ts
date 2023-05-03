@@ -1,6 +1,9 @@
 import {
   AfterViewChecked,
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
 } from "@angular/core";
 import { SpinnerService } from "./service/spinner/spinner.service";
 import { Router } from "@angular/router";
@@ -13,11 +16,10 @@ import { InternalRoutes } from "./utils/internal-routes";
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewChecked {
   title = "LearningResources";
-  spinnerArr : any = [];
+  spinnerArr: any = [];
   subject: any;
   route!: string;
 
@@ -26,26 +28,31 @@ export class AppComponent implements AfterViewChecked {
     private spinnerService: SpinnerService,
     private router: Router,
     private cdref: ChangeDetectorRef,
-    private location: Location,
-  ) {
-  }
-  
-  ngAfterViewChecked(): void {
-    this.cdref.detectChanges();
-    this.router.events.subscribe( (val) => {
-      if(this.localstorage.getItem(Storage_variables.token) && !this.location.path().includes(InternalRoutes.LOGIN_PAGE)) {
-        this.localstorage.setItem(Storage_variables.last_route,this.location.path());
-      }
-    })
-  }
+    private location: Location
+  ) {}
 
   ngOnInit() {
     this.subject = this.spinnerService.spinnerSubject;
     this.subject.subscribe((data: any) => {
-      if(data) {
+      if (data) {
         this.spinnerArr.push(true);
       } else {
         this.spinnerArr.pop();
+      }
+    });
+  }
+  ngAfterViewChecked(): void {
+    this.cdref.detectChanges();
+    this.router.events.subscribe((val) => {
+      if (
+        this.localstorage.getItem(Storage_variables.token) &&
+        !this.location.path().includes(InternalRoutes.LOGIN_PAGE) &&
+        this.location.path() != ""
+      ) {
+        this.localstorage.setItem(
+          Storage_variables.last_route,
+          this.location.path()
+        );
       }
     });
   }
