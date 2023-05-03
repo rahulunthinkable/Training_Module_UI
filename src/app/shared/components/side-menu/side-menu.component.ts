@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailService } from 'src/app/service/User-detail-service/user-detail.service';
+import { roles } from 'src/app/utils/util-constant';
 
 @Component({
   selector: 'app-side-menu',
@@ -9,6 +10,7 @@ import { UserDetailService } from 'src/app/service/User-detail-service/user-deta
 export class SideMenuComponent implements OnInit {
   panelOpenState = false;
   userRole:any
+  roles=roles
 
   constructor(private userDetailsService:UserDetailService) {}
 

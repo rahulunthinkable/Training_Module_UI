@@ -8,6 +8,7 @@ import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { TranslateService } from "@ngx-translate/core";
+import { roles } from "src/app/utils/util-constant";
 
 @Component({
   selector: "app-view-profile",
@@ -18,6 +19,7 @@ export class ViewProfileComponent implements OnInit {
   userDetails!: UserDetails;
   adminViewMode = false;
   userId: any;
+  roles=roles
   constructor(
     private userDetaisService: UserDetailService,
     private userDetail: UserService,

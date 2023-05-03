@@ -4,7 +4,7 @@
             <app-profile *ngIf="userDetails" [user]="userDetails" [viewMode]="adminViewMode"></app-profile>
         </mat-tab>
         <mat-tab *ngIf="!adminViewMode" [label]="'Manage Notifications' | translate">Content2</mat-tab>
-        <mat-tab *ngIf="adminViewMode && userDetails.role!='trainee'" [label]="'Created Courses' | translate">Content3</mat-tab>
+        <mat-tab *ngIf="adminViewMode && userDetails.role!=roles.TRAINEE" [label]="'Created Courses' | translate">Content3</mat-tab>
         <mat-tab *ngIf="adminViewMode" [label]="'Enrolled Courses' | translate">Content4</mat-tab>
     </mat-tab-group>
 </div>
