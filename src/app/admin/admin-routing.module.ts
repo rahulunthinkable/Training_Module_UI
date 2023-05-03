@@ -6,6 +6,7 @@ import { UserTableComponent } from './user-table/user-table.component';
 import { UserProfileComponent } from '../shared/components/user-profile/user-profile/user-profile.component';
 import { EditProfileComponent } from '../shared/components/user-profile/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from '../shared/components/user-profile/view-profile/view-profile.component';
+import { CourseDetailComponent } from '../shared/components/course-detail/course-detail/course-detail.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
         component:EditProfileComponent
       }
     ]
+  },
+  {
+    path:'course/:id',
+    component: CourseDetailComponent
   }
 ];
 @NgModule({

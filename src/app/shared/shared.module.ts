@@ -15,6 +15,7 @@ import { ProfileComponent } from "./components/user-profile/view-profile/profile
 import { ChangePasswordComponent } from "./components/user-profile/change-password/change-password.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
+import { CourseDetailComponent } from './components/course-detail/course-detail/course-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { TranslateModule } from "@ngx-translate/core";
     ViewProfileComponent,
     ProfileComponent,
     ChangePasswordComponent,
+    CourseDetailComponent,
   ],
 
   exports: [

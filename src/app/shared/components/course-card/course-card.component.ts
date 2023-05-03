@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-course-card",
@@ -7,9 +8,11 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class CourseCardComponent implements OnInit {
   @Input("data") courseData: any;
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit(): void {}
 
-  coures() {}
+  navigateToCourseDetailPage(id:string) {
+     this.router.navigate([`/home/admin/course/${id}`]);
+  }
 }
