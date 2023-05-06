@@ -7,6 +7,7 @@
       height: 100vh;
       background: #ffffff;
       color: #fff;
+
       .close {
         position: absolute;
         right: 0;
@@ -28,15 +29,21 @@
       border: none;
     }
 
+    .sidenav-wide {
+      width: 300px !important;
+    }
+
     .main-content-area {
       height: 100vh;
       max-width: 2500px;
 
       .main-toolbar {
         position: relative;
+
         .menu-icon {
           width: 30px;
         }
+
         mat-toolbar {
           color: #fff;
           background: #3f9eb5;
@@ -58,6 +65,7 @@
     .logo {
       margin-left: 10px;
     }
+
     .notification-icon {
       .profile-sec {
         position: absolute;
@@ -72,18 +80,22 @@
         padding: 10px;
         text-align: center;
         border-radius: 5px;
+
         .logout {
           position: relative;
           cursor: pointer;
+
           mat-icon {
             position: relative;
             bottom: -2px;
           }
         }
+
         .profile {
           color: #000;
           position: relative;
           cursor: pointer;
+
           mat-icon {
             position: relative;
             bottom: -2px;

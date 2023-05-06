@@ -61,11 +61,7 @@ export class ChangePasswordComponent {
       this.apiService.change_password(this.changeForm.value,this.userId).subscribe({
         next: (resp) => {
           this.afterSignup = SuccessMessages.FORGET_SUCCESS;
-          this.snackService.openSnackBar(
-            this.translateService.instant(this.afterSignup),
-            1000,
-            SnackClasses.SUCCESS
-          );
+          this.snackService.successSnackBar(this.afterSignup)
           this.spinnerService.closeSpinner();
           this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
           this.localstorage.removeItem(Storage_variables._id);
@@ -76,11 +72,7 @@ export class ChangePasswordComponent {
           if (this.afterSignup == BackEndErrorMessages.SERVER_ERROR) {
             this.afterSignup = BackEndResponse.SERVER_ERROR;
           }
-          this.snackService.openSnackBar(
-            this.translateService.instant(this.afterSignup),
-            2000,
-            SnackClasses.ERROR
-          );
+          this.snackService.errorSnackBar(this.afterSignup)
         },
       });
     }

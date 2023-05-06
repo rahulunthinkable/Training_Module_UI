@@ -7,41 +7,53 @@ import { UserProfileComponent } from '../shared/components/user-profile/user-pro
 import { EditProfileComponent } from '../shared/components/user-profile/edit-profile/edit-profile.component';
 import { ViewProfileComponent } from '../shared/components/user-profile/view-profile/view-profile.component';
 import { CourseDetailComponent } from '../shared/components/course-detail/course-detail/course-detail.component';
+import { AdminGuard } from '../guards/admin-routing-guard/admin-guard.guard';
 
 const routes: Routes = [
   {
-    path:'',
-    component:CourseComponent,
+    path: "",
+    component: CourseComponent,
   },
   {
-    path:'users',
-    component:UserTableComponent,
+    path: "users",
+    component: UserTableComponent,
+    canActivate:[AdminGuard]
   },
   {
-    path:'create-course',
-    component: CreateCourseComponent
+    path: "create-course",
+    component: CreateCourseComponent,
   },
   {
-    path:'profile',
-    component:UserProfileComponent,
-    children:[
+    path: "profile",
+    component: UserProfileComponent,
+    children: [
       {
-        path:'',
-        component:ViewProfileComponent
+        path: "",
+        component: ViewProfileComponent,
       },
       {
-        path:'edit-profile',
-        component:EditProfileComponent
-      }
-    ]
+        path: "edit-profile",
+        component: EditProfileComponent,
+      },
+    ],
+  },
+  {
+    path: "user",
+    component: UserProfileComponent,
+    children: [
+      {
+        path: ":id",
+        component: ViewProfileComponent,
+      },
+    ],
   },
   {
     path:'course/:id',
     component: CourseDetailComponent
-  }
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

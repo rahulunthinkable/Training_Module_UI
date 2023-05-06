@@ -52,7 +52,7 @@ export class ForgotPasswordComponent {
         if (errMsg == BackEndErrorMessages.NOT_A_MAIL) {
           errMsg = BackEndResponse.NOT_A_MAIL;
         }
-        this.snackService.openSnackBar(this.translate.instant(errMsg), 2000, SnackClasses.ERROR);
+        this.snackService.errorSnackBar(errMsg)
       },
     });
   }

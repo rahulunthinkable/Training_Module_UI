@@ -7,7 +7,6 @@ import { CourseService } from "src/app/service/course-service/course-service.ser
 import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { UserDetailService } from "src/app/service/User-detail-service/user-detail.service";
 import { SuccessMessages } from "src/app/utils/success-messages";
-import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { ErrorMessages } from "src/app/utils/error-messages";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -37,7 +36,6 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private loggedInUser: UserDetailService,
     private snackbarService: SnackService,
-    private translateService: TranslateService
   ) {
     this.stepperOrientation = this.breakpointObserver
       .observe("(min-width: 800px)")
@@ -92,10 +90,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
 
   submitCourseForm() {
     if (this.validateCourseName()) {
-      this.snackbarService.openSnackBar(
-        this.translateService.instant(ErrorMessages.COURSE_NAME_ERROR),
-        1000,
-        SnackClasses.ERROR)
+      this.snackbarService.errorSnackBar(ErrorMessages.COURSE_NAME_ERROR)
       return;
     }
     this.courseFormData.set(
@@ -120,18 +115,10 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe(
         (res) => {
-          this.snackbarService.openSnackBar(
-            this.translateService.instant(SuccessMessages.CREATE_COURSE_SUCCESS),
-            1000,
-            SnackClasses.SUCCESS
-          );
+          this.snackbarService.successSnackBar(SuccessMessages.CREATE_COURSE_SUCCESS)
         },
         (err) => {
-          this.snackbarService.openSnackBar(
-            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
-            1000,
-            SnackClasses.ERROR
-          );
+          this.snackbarService.errorSnackBar()
         }
       );
     
@@ -146,11 +133,7 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
           this.categoryList = res;
         },
         (err) => {
-          this.snackbarService.openSnackBar(
-            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
-            1000,
-            SnackClasses.ERROR
-          );
+          this.snackbarService.errorSnackBar()
         }
       );
   }

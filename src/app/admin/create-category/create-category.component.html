@@ -1,0 +1,23 @@
+<div class="main-container">
+    <mat-card class="mat-elevation-z2">
+        <mat-card-header>
+            <mat-card-title>{{"Create Category" | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-title>{{"Available Categories" | translate}}:</mat-card-title>
+            <ng-container *ngFor="let category of categories">
+                <mat-card-subtitle>{{category.categoryName| translate}}</mat-card-subtitle>
+            </ng-container>
+            <form [formGroup]="categoryForm" (ngSubmit)="createCategory()">
+                <mat-form-field>
+                    <mat-label>{{"Category Name"| translate}}</mat-label>   
+                    <input type="text" matInput autocomplete="off" formControlName="categoryName">  
+                    <mat-error *ngIf="categoryForm.controls['categoryName'].hasError('required')">
+                        {{"Please fill this field" | translate}}
+                    </mat-error>               
+                </mat-form-field>
+                <button mat-button>{{"Create Category" | translate}}</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

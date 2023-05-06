@@ -91,5 +91,12 @@
   "Web Development":"Web Development",
   "Machine Learning and AI":"Machine Learning and AI",
   "Active":"Active",
-  "InActive":"InActive"
+  "InActive":"InActive",
+  "Role":"Role",
+  "Joined On":"Joined On",
+  "Created Courses":"Created Courses",
+  "Enrolled Courses":"Enrolled Courses",
+  "Enroll for free":"Enroll for free",
+  "Created By":"Created By",
+  "Create Category":"Create Category"
 }

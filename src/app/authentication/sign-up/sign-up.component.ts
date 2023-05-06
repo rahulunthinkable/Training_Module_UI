@@ -66,11 +66,7 @@ export class SignUPComponent {
           next: (resp) => {
             this.afterSignup = SuccessMessages.SIGNUP_SUCCESS;
             this.showLabel = true;
-            this.snackService.openSnackBar(
-              this.translate.instant(this.afterSignup),
-              1000,
-              SnackClasses.SUCCESS
-            );
+            this.snackService.successSnackBar(this.afterSignup)
             this.spinnerService.closeSpinner();
             this.router.navigateByUrl(InternalRoutes.LOGIN_PAGE);
           },
@@ -81,11 +77,7 @@ export class SignUPComponent {
             if (this.afterSignup == BackEndErrorMessages.NOT_A_MAIL) {
               this.afterSignup = BackEndResponse.NOT_A_MAIL;
             }
-            this.snackService.openSnackBar(
-              this.translate.instant(this.afterSignup),
-              2000,
-              SnackClasses.ERROR
-            );
+            this.snackService.errorSnackBar(this.afterSignup)
           },
         });
       }

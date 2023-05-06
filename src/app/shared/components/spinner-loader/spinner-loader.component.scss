@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(180, 180, 180, 0.425);
+    z-index: 1000;
     mat-spinner {
         position: absolute;
         top: 50%;

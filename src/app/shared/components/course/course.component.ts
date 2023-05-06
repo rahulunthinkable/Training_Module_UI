@@ -3,11 +3,8 @@ import { CourseService } from "src/app/service/course-service/course-service.ser
 import { SpinnerService } from "src/app/service/spinner/spinner.service";
 import { courseFilter } from "./course-filter/course-filter";
 import { Subject, catchError, forkJoin, of, take, takeUntil } from "rxjs";
-import { ErrorMessages } from "src/app/utils/error-messages";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
-import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { actions } from "src/app/utils/util-constant";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-course",
@@ -23,14 +20,14 @@ export class CourseComponent implements OnInit, OnDestroy {
   filterOptions: any = courseFilter;
   req1: any;
   req2: any;
+  stopScrolling=false
 
   private destroy: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private courseApiService: CourseService,
     private spinnerService: SpinnerService,
-    private snackBarService: SnackService,
-    private translateService: TranslateService
+    private snackBarService: SnackService
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +36,11 @@ export class CourseComponent implements OnInit, OnDestroy {
       skip: this.skip,
     };
     this.getCourseAndCategoryObservables(this.payload);
-    this.getCoursesAndCategories(actions.ASSIGN, this.req1, this.req2);
+    this.getCoursesAndCategories(actions.ASSIGN, this.req1, this.req2);    
   }
 
   selectedFilters(event: any) {
+    this.stopScrolling=false
     event.forEach((filter: any) => {
       if (filter[Object.keys(filter)[0]]) {
         this.payload[Object.keys(filter)[0]] = filter[Object.keys(filter)[0]];
@@ -62,7 +60,9 @@ export class CourseComponent implements OnInit, OnDestroy {
     if (scrollTop >= scrollHeight - offsetHeight) {
       this.payload.skip += 10;
       this.getCourseAndCategoryObservables(this.payload);
-      this.getCoursesAndCategories(actions.APPEND, this.req1);
+      if(!this.stopScrolling){
+        this.getCoursesAndCategories(actions.APPEND, this.req1);
+      }
     }
   }
 
@@ -71,7 +71,7 @@ export class CourseComponent implements OnInit, OnDestroy {
     forkJoin([req1, req2])
       .pipe(takeUntil(this.destroy))
       .subscribe({
-        next: (responseList: any) => {
+        next: (responseList: any) => {          
           this.spinnerService.closeSpinner();
           if (responseList[1]) {
             this.categories = responseList[1];
@@ -104,15 +104,14 @@ export class CourseComponent implements OnInit, OnDestroy {
                 this.courseData.push(course);
               });
             }
+            else{
+              this.stopScrolling=true
+            }
           }
         },
         error: (error) => {
           this.spinnerService.closeSpinner();
-          this.snackBarService.openSnackBar(
-            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
-            1000,
-            SnackClasses.ERROR
-          );
+          this.snackBarService.errorSnackBar()
         },
       });
   }

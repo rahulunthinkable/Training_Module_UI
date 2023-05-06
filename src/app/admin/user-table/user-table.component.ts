@@ -23,6 +23,9 @@ export class UserTableComponent implements OnInit, OnDestroy {
   skip = 0;
   filterParams: any = {};
   reinitialize: boolean = false;
+  sorting:any={
+    _id:-1
+  }
 
   private destroy: Subject<boolean> = new Subject<boolean>();
 
@@ -50,6 +53,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
       searchFilter: this.filterParams?.searchFilter
         ? this.filterParams?.searchFilter
         : "",
+        ...this.sorting
     };
     this.apiService
       .getUserList(payload)
@@ -71,11 +75,7 @@ export class UserTableComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.loader.closeSpinner();
-          this.snackbarService.openSnackBar(
-            this.translateService.instant(ErrorMessages.SOMETHING_WENT_WRONG),
-            1000,
-            SnackClasses.ERROR
-          );
+          this.snackbarService.errorSnackBar()
         }
       );
   }

@@ -1,0 +1,16 @@
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 4px;
+    padding: 2px;
+    button{
+        align-self: flex-end;
+        background-color: rgb(107, 107, 182);
+        color: #fff;
+        margin: 8px 0;
+    }
+}
+mat-card-subtitle{
+    margin: 2px;
+}

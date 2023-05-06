@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
@@ -6,11 +6,12 @@ import { Router } from "@angular/router";
   templateUrl: "./course-card.component.html",
   styleUrls: ["./course-card.component.scss"],
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnChanges {
   @Input("data") courseData: any;
   constructor(private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnChanges(change:any): void {    
+  }
 
   navigateToCourseDetailPage(id:string) {
      this.router.navigate([`/home/admin/course/${id}`]);

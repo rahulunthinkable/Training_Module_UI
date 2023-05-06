@@ -1,21 +1,33 @@
 <div>
     <div class="table-container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"  matSort >
             <div *ngFor="let column of displayedColumns">
-                <ng-container [matColumnDef]="column.label">
-                    <th mat-header-cell *matHeaderCellDef id="column.label" class="column-cls"
-                        title="{{column.label | translate}}"> {{column.label | translate}}
+                <ng-container *ngIf="column.label!='Edit'" [matColumnDef]="column.tablekey">
+                    <th mat-header-cell  *matHeaderCellDef id="column.label" class="column-cls"
+                        title="{{column.label | translate}}" mat-sort-header> {{column.label | translate}}
                     </th>
-                    <td mat-cell *matCellDef="let element" 
-                        title="{{element[column.tablekey] | translate}}">
-                        {{element[column.tablekey] | translate}} </td>
+                    <td mat-cell *matCellDef="let element" title="{{element[column.tablekey] | translate}}">
+                        {{element[column.tablekey] | translate | titlecase}} </td>
                 </ng-container>
             </div>
+            <ng-container matColumnDef="_id" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                <td mat-cell class="edit-menu" *matCellDef="let element">
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Edit</button>
+                        <button mat-menu-item (click)="viewUserProfile(element['_id'])">View</button>
+                        <button mat-menu-item>Delete</button>
+                    </mat-menu>
+                </td>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="columnNames ; sticky:true"></tr>
             <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
         </table>
     </div>
-    <mat-paginator #paginator [pageSize]="defaultPageNo" [length]="totalLength"
-            [pageSizeOptions]="[5 ,10, 25, 50,100]" showFirstLastButtons (page)="pageChange($event)">
+    <mat-paginator #paginator [pageSize]="defaultPageNo" [length]="totalLength" [pageSizeOptions]="[5 ,10, 25, 50,100]"
+        showFirstLastButtons (page)="pageChange($event)">
     </mat-paginator>
 </div>

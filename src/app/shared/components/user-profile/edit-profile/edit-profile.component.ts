@@ -82,13 +82,13 @@ export class EditProfileComponent {
     this.apiService.updateUser(this.editForm,this.userDetails.id).subscribe({
       next:(value:any)=>{
         this.loaderService.closeSpinner()
-        this.snackBarService.openSnackBar(this.translateService.instant(SuccessMessages.USER_UPDATED_SUCCESS),1000, SnackClasses.SUCCESS)
+        this.snackBarService.successSnackBar(SuccessMessages.USER_UPDATED_SUCCESS)
         this.localstorage.setItem('token',value.token)
         this.router.navigateByUrl(InternalRoutes.PROFILE)
       },
       error:(err:any)=>{
         this.loaderService.closeSpinner()
-        this.snackBarService.openSnackBar(this.translateService.instant(err.error.message),1000,SnackClasses.ERROR)
+        this.snackBarService.errorSnackBar(err.error.message)
       }
     })
   }

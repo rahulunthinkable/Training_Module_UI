@@ -43,6 +43,12 @@ export class ApiService {
     if (params.searchFilter) {
       queryParams = queryParams.append("keyword", params.searchFilter);
     }
+    if(params._id){
+      queryParams=queryParams.append('_id',params._id)
+    }
+    if(params.userName){
+      queryParams=queryParams.append('userName',params.userName)
+    }
     return this.genericHttpService.httpGet(url.USER_LIST_URL, queryParams);
   }
 

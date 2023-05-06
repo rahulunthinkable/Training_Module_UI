@@ -52,20 +52,12 @@ export class ChangePasswordComponent {
           next: (resp) => {
             let successResponse = SuccessMessages.FORGET_SUCCESS;
             this.dialogRef.close();
-            this.snackBarService.openSnackBar(
-              this.translateService.instant(successResponse) ,
-              1000,
-              SnackClasses.SUCCESS
-            );
+            this.snackBarService.successSnackBar(successResponse)
           },
           error: (err) => {
             this.dialogRef.close();
             let errorMessege = err.error.message;
-            this.snackBarService.openSnackBar(
-              this.translateService.instant(errorMessege),
-              2000,
-              SnackClasses.ERROR
-            );
+            this.snackBarService.errorSnackBar(errorMessege)
           },
         });
     }

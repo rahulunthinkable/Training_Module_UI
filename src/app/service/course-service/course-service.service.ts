@@ -20,4 +20,11 @@ export class CourseService {
   createCourse(payload: any) {
     return this.genericHttpService.httpPost(courseUrl.COURSE_URL, payload);
   }
+  getCourseDetails(courseId: any) {
+    let url = courseUrl.COURSE_URL + "/" + courseId;
+    return this.genericHttpService.httpGet(url);
+  }
+  createCategory(payload:any){
+    return this.genericHttpService.httpPost(courseUrl.CATEGORY_URL,payload)
+  }
 }

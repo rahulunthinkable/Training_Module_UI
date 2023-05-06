@@ -1,7 +1,7 @@
 import { Component, Inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Subject, flatMap } from "rxjs";
+import { Subject } from "rxjs";
 import { ApiService } from "src/app/service/auth-service/api.service";
 import { SnackService } from "src/app/service/snack-bar/snack.service";
 import { SpinnerService } from "src/app/service/spinner/spinner.service";
@@ -12,8 +12,6 @@ import {
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { InternalRoutes } from "src/app/utils/internal-routes";
 import { LocalStorageToken } from "src/app/localstorage.token";
-import { SnackClasses } from "src/app/utils/snack-bar-classes";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-login-form",
@@ -37,7 +35,6 @@ export class Login {
     private router: Router,
     private snackService: SnackService,
     private spinnerService: SpinnerService,
-    private translateService: TranslateService
   ) {}
 
   hide = true;
@@ -49,11 +46,7 @@ export class Login {
         next: (resp) => {
           this.afterLogin = SuccessMessages.LOGIN_SUCCESS;
           this.showLabel = true;
-          this.snackService.openSnackBar(
-            this.translateService.instant(this.afterLogin),
-            1000,
-            SnackClasses.SUCCESS
-          );
+          this.snackService.successSnackBar(this.afterLogin)
           this.spinnerService.closeSpinner();
           this.localstorage.setItem("token", resp.token);
           this.router.navigateByUrl(InternalRoutes.ADMIN);
@@ -65,11 +58,7 @@ export class Login {
           if (this.afterLogin == BackEndErrorMessages.NOT_A_MAIL) {
             this.afterLogin = BackEndResponse.NOT_A_MAIL;
           }
-          this.snackService.openSnackBar(
-            this.translateService.instant(this.afterLogin),
-            2000,
-            SnackClasses.ERROR
-          );
+          this.snackService.errorSnackBar(this.afterLogin)
         },
       });
     }
