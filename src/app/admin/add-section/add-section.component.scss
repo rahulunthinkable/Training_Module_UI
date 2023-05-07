@@ -1,0 +1,166 @@
+.main-content {
+    position: relative;
+    border: 2px solid black;
+    .section-head {
+        position: relative;
+        input {
+            border: 1px solid black;
+            outline: none;
+            width: 70%;
+            padding: 5px;
+        }
+        input.inputBorder {
+            border: 1px solid red;
+            box-shadow: 0 0 8px red;
+        }
+        .cust {
+            display: none;
+        }
+
+        mat-icon {
+            position: relative;
+            bottom: -5px;
+            margin: 0 10px;
+        }
+
+        &:hover {
+            .cust {
+                display: inline;
+            }
+        }
+    }
+
+    .content-add {
+        margin-left: 35px;
+
+        .btns {
+            text-align: end;
+            margin-right: 30px;
+
+            .btn {
+                position: relative;
+                border: 1px solid black;
+                border-radius: 0px;
+                margin: 1px;
+
+                span {
+                    position: relative;
+                    bottom: 4px;
+                }
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                }
+            }
+        }
+
+        nav {
+            .nav-tabs {
+                display: flex;
+                border-bottom: 2px solid black;
+
+                .nav-link {
+                    margin-left: auto;
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 2px;
+                    border: 2px solid black;
+                    border-bottom: none;
+
+                    span {
+                        position: relative;
+                        bottom: 5px;
+                        cursor: default;
+                    }
+                }
+            }
+        }
+
+        .tab-content {
+            .tab-pane {
+                .content-type {
+                    .types {
+                        .blo {
+                            display: inline-block;
+                            width: 200px;
+                            text-align: center;
+                            padding: 10px 0;
+                            cursor: pointer;
+                            position: relative;
+
+                            span {
+                                position: relative;
+                                bottom: 5px;
+                            }
+
+                            mat-icon {
+                                margin: 0 5px;
+                            }
+
+                            &:hover {
+                                background-color: rgba(128, 128, 128, 0.219);
+                            }
+                        }
+                    }
+
+                    .text {
+                        font-weight: bold;
+                    }
+                    .arti {
+                        margin-top: 10px;
+                        border: 2px solid black;
+                    }
+                    .file {
+                        border: 2px solid black;
+                        .fileName {
+                            padding: 5px 20px;
+                            .videoUploadlink {
+                                width: 500px;
+                                border: none;
+                                outline: none;
+                            }
+                        }
+                        .upload-btn {
+                            padding: 5px 20px;
+                            position: relative;
+                            cursor: pointer;
+                            label {
+                                cursor: pointer;
+                                input {
+                                    display: none;
+                                }
+                                span {
+                                    position: relative;
+                                    bottom: 4px;
+                                }
+                            }
+                            &:hover {
+                                color: white;
+                                background-color: black;
+                            }
+                        }
+                    }
+                    .sub-text {
+                        margin-top: 10px;
+                        .sub {
+                            background-color: black !important;
+                            color: white !important;
+                            width: fit-content !important;
+                        }
+                        .can {
+                            @extend .sub;
+                            background-color: white !important;
+                            color: black !important;
+                            border: 1px solid black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+mat-icon {
+    cursor: pointer;
+}

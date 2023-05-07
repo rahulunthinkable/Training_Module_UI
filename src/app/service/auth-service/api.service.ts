@@ -4,6 +4,7 @@ import { url } from "../../utils/urls";
 import { LocalStorageToken } from "src/app/localstorage.token";
 import { HttpParams } from "@angular/common/http";
 import { Storage_variables } from "src/app/utils/local-storage-variable";
+import { courseUrl } from "../../utils/urls";
 @Injectable({
   providedIn: "root",
 })
@@ -25,7 +26,7 @@ export class ApiService {
     return this.genericHttpService.httpPost(url.FORGET_URL, payload);
   }
 
-  change_password(payload: any,userId:any) {
+  change_password(payload: any, userId: any) {
     let changeUrl = url.CHANGE_URL + "/" + userId;
     return this.genericHttpService.httpPatch(changeUrl, payload);
   }
@@ -46,8 +47,28 @@ export class ApiService {
     return this.genericHttpService.httpGet(url.USER_LIST_URL, queryParams);
   }
 
-  updateUser(payload:any,userId:any){
-    let updateUserUrl=url.USER_LIST_URL+'/'+userId;
-    return this.genericHttpService.httpPatch(updateUserUrl,payload)
+  getCourseInfo(queryParams: any) {
+    return this.genericHttpService.httpGet(
+      `${courseUrl.COURSE_URL}/${queryParams}`
+    );
+  }
+
+  updateUser(payload: any, userId: any) {
+    let updateUserUrl = url.USER_LIST_URL + "/" + userId;
+    return this.genericHttpService.httpPatch(updateUserUrl, payload);
+  }
+
+  addSection(playload: any) {
+    return this.genericHttpService.httpPost(courseUrl.SECTION_URL, playload);
+  }
+
+  updateSection(playload: any, id:any) {
+    return this.genericHttpService.httpPatch(`${courseUrl.SECTION_URL}/${id}`,playload);
+  }
+  getAllSections(id:any) {
+    let courseId = {
+      courseId: id,
+    }
+    return this.genericHttpService.httpGet(courseUrl.SECTION_URL, courseId);
   }
 }

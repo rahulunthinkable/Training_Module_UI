@@ -1,0 +1,249 @@
+<div *ngIf="!sectionSaved" class="main-content bg-white m-2 p-2 mb-3">
+    <form [formGroup]="sectionForm" (ngSubmit)="saveArticle()">
+        <div class="section-head my-2">
+            <strong>
+                Section {{ sectionNumber + 1 }}:
+            </strong>
+            &nbsp;
+            <mat-icon>insert_drive_file</mat-icon>
+            <span *ngIf="!editable">
+                {{ sectionForm.controls['title'].value}}
+            </span>
+            <input [ngClass]="{ 'inputBorder' : !sectionTitle }" *ngIf="editable" type="text" formControlName="title" (blur)="editable = !editable">
+            <span class="cust" *ngIf="!editable">
+                <mat-icon (click)="editable = !editable">edit</mat-icon>
+                <mat-icon (click)="removeSec()">delete</mat-icon>
+            </span>
+            <span *ngIf="!sectionSaved" class="float-end">
+                <mat-icon (click)="sectionClosed()">
+                    close
+                </mat-icon>
+            </span>
+        </div>
+        <div class="content-add mt-3">
+            <div class="btns">
+                <button type="button" *ngIf="!contentSelected" class="btn" (click)="contentSelected = !contentSelected">
+                    <mat-icon *ngIf="!sectionUpdate">add</mat-icon>
+                    <span *ngIf="!sectionUpdate">
+                        Content
+                    </span>
+                    <mat-icon *ngIf="sectionUpdate">
+                        edit
+                    </mat-icon>
+                    <span *ngIf="sectionUpdate">
+                        Edit
+                    </span>
+                </button>
+            </div>
+
+            <!-- select content type ... -->
+
+            <nav *ngIf="contentSelected && (!articleSelected && !fileSelected && !videoSelected)">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                        <span>
+                            Select Content Type
+                        </span>
+                        <mat-icon (click)="contentSelected = !contentSelected">
+                            close
+                        </mat-icon>
+                    </button>
+                </div>
+            </nav>
+            <div *ngIf="contentSelected && (!articleSelected && !fileSelected && !videoSelected)" class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="content-type">
+                        <div class="desc text-center my-2">
+                            Select the main type of content. Files and links can be added as resources.
+                            <a href="https://support.udemy.com/hc/en-us/articles/229606188">
+                                Learn about content types.
+                            </a>
+                        </div>
+                        <div class="types text-center">
+                            <div class="blo" (click)="typeSelected('video','videoSelected')">
+                                <mat-icon>
+                                    play_circle_filled
+                                </mat-icon>
+                                <span>
+                                    Video
+                                </span>
+                            </div>
+                            <div class="blo" (click)="typeSelected('file')">
+                                <mat-icon>
+                                    insert_drive_file
+                                </mat-icon>
+                                <span>
+                                    File
+                                </span>
+                            </div>
+                            <div class="blo" (click)="typeSelected('article','articleSelected')">
+                                <mat-icon>
+                                    editor
+                                </mat-icon>
+                                <span>
+                                    Article
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Content Type -->
+            
+            <nav *ngIf="videoSelected">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                        <span>
+                            Upload Video
+                        </span>
+                        <mat-icon (click)="videoSelected = !videoSelected">
+                            close
+                        </mat-icon>
+                    </button>
+                </div>
+            </nav>
+            <div *ngIf="videoSelected" class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="content-type">
+                        <div class="text">
+                            Video
+                        </div>
+                        <div class="file d-flex">
+                            <div class="fileName">
+                                <input (keyup)="videoUploading()" class="videoUploadlink" type="text" placeholder="paste the video url" formControlName="url">
+                            </div>
+                            <div class="upload-btn ms-auto" [ngClass]="{'bg-success': sectionForm.controls['url'].value}">
+                                <label for="upload-img">
+                                    <mat-icon *ngIf="!sectionForm.controls['url'].value">
+                                        file_upload
+                                    </mat-icon>
+                                    <span *ngIf="!sectionForm.controls['url'].value">
+                                        Upload Video
+                                    </span>
+                                    <mat-icon *ngIf="sectionForm.controls['url'].value">
+                                        done
+                                    </mat-icon>
+                                    <span *ngIf="sectionForm.controls['url'].value">
+                                        Video Uploaded
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sub-text text-end">
+                            <button (click)="cancelVideo()" type="button" mat-raised-button class="px-3 py-2 mx-2 can">
+                                Cancel
+                            </button>
+                            <button *ngIf="!sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Save
+                            </button>
+                            <button *ngIf="sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Content type -->
+
+            <nav *ngIf="fileSelected">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                        <span>
+                            Upload File
+                        </span>
+                        <mat-icon (click)="fileSelected = !fileSelected">
+                            close
+                        </mat-icon>
+                    </button>
+                </div>
+            </nav>
+            <div *ngIf="fileSelected" class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="content-type">
+                        <div class="text">
+                            Text
+                        </div>
+                        <div class="file d-flex">
+                            <div class="fileName">
+                                {{ fileName }}
+                            </div>
+                            <div class="upload-btn ms-auto">
+                                <label for="upload-img">
+                                    <input #uploadedFile type="file" id="upload-img" (change)="fileUpload($event)">
+                                    <mat-icon>
+                                        file_upload
+                                    </mat-icon>
+                                    <span>
+                                        Upload File
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="sub-text text-end">
+                            <button (click)="cancelFile()" type="button" mat-raised-button class="px-3 py-2 mx-2 can">
+                                Cancel
+                            </button>
+                            <button *ngIf="!sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Save
+                            </button>
+                            <button *ngIf="sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article content type ... -->
+
+            <nav *ngIf="articleSelected">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                        <span>
+                            Add Article
+                        </span>
+                        <mat-icon (click)="articleSelected = !articleSelected">
+                            close
+                        </mat-icon>
+                    </button>
+                </div>
+            </nav>
+            <div *ngIf="articleSelected" class="tab-content mt-3" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="content-type">
+                        <div class="text">
+                            Text
+                        </div>
+                        <div class="arti">
+                            <ckeditor [editor]="Editor" [config]="{placeholder : 'Type your content here'}" formControlName="article"></ckeditor>
+                        </div>
+                        <div class="sub-text text-end">
+                            <button type="button" mat-raised-button class="px-3 py-2 mx-2 can" (click)="cancelArticle()">
+                                Cancel
+                            </button>
+                            <button *ngIf="!sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Save
+                            </button>
+                            <button *ngIf="sectionUpdate" type="submit" mat-raised-button class="px-3 py-2 me-3 sub">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<app-saved-section *ngIf="sectionSaved" 
+[sectionTitle]="sectionForm.controls['title'].value" 
+[sectionNumber]="sectionNumber" 
+(sectionEdit)="editSection()"
+[sectionType]="sectionForm.get('sectionType')?.value"
+></app-saved-section>

@@ -29,15 +29,6 @@ export class AppComponent implements AfterViewChecked {
     private location: Location,
   ) {
   }
-  
-  ngAfterViewChecked(): void {
-    this.cdref.detectChanges();
-    this.router.events.subscribe( (val) => {
-      if(this.localstorage.getItem(Storage_variables.token) && !this.location.path().includes(InternalRoutes.LOGIN_PAGE)) {
-        this.localstorage.setItem(Storage_variables.last_route,this.location.path());
-      }
-    })
-  }
 
   ngOnInit() {
     this.subject = this.spinnerService.spinnerSubject;
@@ -48,5 +39,14 @@ export class AppComponent implements AfterViewChecked {
         this.spinnerArr.pop();
       }
     });
+  }
+
+  ngAfterViewChecked(): void {
+    this.cdref.detectChanges();
+    this.router.events.subscribe( (val) => {
+      if(this.localstorage.getItem(Storage_variables.token) && !this.location.path().includes(InternalRoutes.LOGIN_PAGE) && this.location.path() != '') {
+        this.localstorage.setItem(Storage_variables.last_route,this.location.path());
+      }
+    })
   }
 }

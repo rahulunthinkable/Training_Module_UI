@@ -1,0 +1,23 @@
+
+<div class="course-info bg-white mb-2 rounded mat-elevation-z8">
+    <div class="blo p-3">
+        <div class="title">
+            <span [title]="courseInfo.courseName">
+                {{ courseInfo.courseName }}
+            </span>
+        </div>
+        <div class="author" title="Author">
+            --&nbsp;{{ courseInfo.creatorName }}
+        </div>
+        <div class="category" [title]="courseInfo.categoryId">
+            {{ courseInfo.categoryId }}
+        </div>
+        <div class="disc">
+            {{ courseInfo.courseDescription }}
+        </div>
+        <div class="cre-date">
+            Date of creation:
+            {{ courseInfo.createdAt | date }}
+        </div>
+    </div>
+</div>

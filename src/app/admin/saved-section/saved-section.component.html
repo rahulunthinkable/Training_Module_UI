@@ -1,0 +1,56 @@
+<div class="main-content bg-white m-2 p-2 mb-3">
+    <div class="sec-intro">
+        <mat-icon class="text-success">
+            check_circle
+        </mat-icon>&nbsp;
+        <span>
+            Section {{ sectionNumber + 1}}:
+        </span>
+        &nbsp;
+        <mat-icon>
+            insert_drive_file
+        </mat-icon>&nbsp;
+        <span>
+            {{ sectionTitle }}
+        </span>
+        <mat-icon class="editable" (click)="editSection()">
+            edit
+        </mat-icon>
+        <mat-icon class="editable">
+            delete
+        </mat-icon>
+        <mat-icon class="drop-down" *ngIf="!dropDown" (click)="dropDownClicked()">
+            keyboard_arrow_down
+        </mat-icon>
+        <mat-icon class="drop-down" *ngIf="dropDown" (click)="dropDownClicked()">
+            keyboard_arrow_up
+        </mat-icon>
+    </div>
+    <div class="sec-info" *ngIf="dropDown">
+        <div class="content-info">
+            <div class="img">
+                <img class="bg-dark" src="../../../assets/Images/FILE.png" alt="">
+            </div>
+            <div class="content-edit">
+                <div>
+                    <div class="c-type">
+                        <span class="ms-3">
+                            Content Type:- &nbsp;
+                        </span>
+                        <span class="text-dark">
+                            {{ sectionType }}
+                        </span>
+                    </div> <br>
+                    <div class="e-dit" (click)="editSection()">
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                        <span>
+                            Edit Content
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

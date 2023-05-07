@@ -11,4 +11,5 @@ export const url = {
 export const courseUrl = {
   COURSE_URL: "courses",
   CATEGORY_URL: "category",
+  SECTION_URL : "course/sections",
 };

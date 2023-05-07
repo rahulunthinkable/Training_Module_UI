@@ -1,0 +1,24 @@
+<div class="whole-container bg-white p-2 d-flex flex-column">
+    <div class="app-course-basic-info">
+        <app-course-basic-info [courseInfo]="courseInfo"></app-course-basic-info>
+    </div>
+    <div class="content bg-white pb-3 rounded pt-3 mat-elevation-z8">
+        <div class="sections" *ngFor="let section of Sections;index as i">
+            <app-add-section [sectionTitle]="i < CurrentNumberOfSections ? section.title : ''"
+                [sectionNumber]="i < CurrentNumberOfSections ? section.orderBy : i"
+                [sectionContentType]="i < CurrentNumberOfSections ? section.sectionType : ''"
+                (removeSection)="removeSec($event)" [videoUrl]="i < CurrentNumberOfSections ? section.url : ''"
+                [articleData]="i < CurrentNumberOfSections ? section.article : ''"
+                [sectionId]="i < CurrentNumberOfSections ? section._id : ''"
+                [sectionFileName]="i < CurrentNumberOfSections ? section.filename : ''"></app-add-section>
+        </div>
+        <div class="add-section">
+            <button type="button" class="btn" (click)="addSection()">
+                <mat-icon>add</mat-icon>
+                <span>
+                    Section
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

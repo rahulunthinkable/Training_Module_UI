@@ -1,0 +1,58 @@
+.main-content {
+    border: 2px solid black;
+    position: relative;
+    .sec-intro {
+        position: relative;
+        span {
+            position: relative;
+            bottom: 7px;
+        }
+        .drop-down {
+            float: right;
+            margin-right: 30px;
+        }
+        .editable {
+            display: none;
+        }
+        &:hover {
+            .editable {
+                display: inline;
+            }
+        }
+    }
+    .sec-info {
+        padding: 15px 0;
+        border-top: 2px solid black;
+        position: relative;
+        .content-info {
+            .img {
+                height: 70px;
+                overflow: hidden;
+                display: inline-block;
+                width: fit-content;
+            }
+            .content-edit {
+                display: inline-block;
+                color: blue;
+                position: relative;
+                margin-left: 20px;
+                div {
+                    cursor: pointer;
+                    position: relative;
+                    display: inline-block;
+                    width: fit-content;
+                    span {
+                        position: relative;
+                        bottom: 5px;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+mat-icon {
+    cursor: pointer;
+    margin: 0 10px;
+}

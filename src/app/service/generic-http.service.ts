@@ -8,7 +8,7 @@ export class GenericHttpService {
   BACKEND_API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
-
+  
   httpPost(url: string, payload: any) {
     return this.http.post<any>(`${this.BACKEND_API_URL}/${url}`, payload);
   }
@@ -20,4 +20,5 @@ export class GenericHttpService {
   httpGet(url:string, queryParams?:any) {
     return this.http.get<any>(`${this.BACKEND_API_URL}/${url}`,{params: queryParams});
   }
+
 }

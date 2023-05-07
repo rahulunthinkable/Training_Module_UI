@@ -9,6 +9,9 @@ import { UserDetailService } from "src/app/service/User-detail-service/user-deta
 import { SuccessMessages } from "src/app/utils/success-messages";
 import { SnackClasses } from "src/app/utils/snack-bar-classes";
 import { ErrorMessages } from "src/app/utils/error-messages";
+import { Router } from "@angular/router";
+import { InternalRoutes } from "src/app/utils/internal-routes";
+import { SingleCourseService } from "src/app/service/single-course/single-course.service";
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
@@ -37,7 +40,9 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver,
     private loggedInUser: UserDetailService,
     private snackbarService: SnackService,
-    private translateService: TranslateService
+    private router: Router,
+    private singleCourseService: SingleCourseService,
+    private translateService: TranslateService,
   ) {
     this.stepperOrientation = this.breakpointObserver
       .observe("(min-width: 800px)")
@@ -119,12 +124,14 @@ export class CreateCourseComponent implements OnInit, OnDestroy {
       .createCourse(this.courseFormData)
       .pipe(takeUntil(this.destroy))
       .subscribe(
-        (res) => {
+        async (res) => {
           this.snackbarService.openSnackBar(
             this.translateService.instant(SuccessMessages.CREATE_COURSE_SUCCESS),
             1000,
             SnackClasses.SUCCESS
           );
+          await this.singleCourseService.addIntoductionSection(res._id);
+          this.router.navigateByUrl(`${InternalRoutes.ADMIN}/${res._id}`)
         },
         (err) => {
           this.snackbarService.openSnackBar(
